@@ -4,8 +4,6 @@ function setup() {
   canvas = createCanvas(400, 400);
   // attach the canvas to the div in your HTML
   canvas.parent("sketch-container");
-function setup() {
-  createCanvas(400, 400);
   noStroke();
   fill(120, 140, 160);
   rect(0, 0, 400, 400/5); 

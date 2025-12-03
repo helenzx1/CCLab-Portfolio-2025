@@ -1,13 +1,23 @@
+// --- 把这些变量提前到最前面 ---
+let highlightSize; 
+let blushColor; 
+
+let eyeLeft = {x:150, y: 200, r: 10};
+let eyeRight = {x:250, y: 200, r: 10};
+
+let highlightLeftX, highlightLeftY;
+let highlightRightX, highlightRightY;
+// --------------------------------------------------
+
 
 function setup() {
-  // create the canvas
   canvas = createCanvas(400, 400);
-  // attach the canvas to the div in your HTML
   canvas.parent("sketch-container");
   
   background(128,128,128);
   randomizeAll(); 
 
+  // 这里现在 eyeLeft 和 eyeRight 已经存在，不会报错
   highlightLeftX = eyeLeft.x;
   highlightLeftY = eyeLeft.y;
   highlightRightX = eyeRight.x;
@@ -16,15 +26,6 @@ function setup() {
   loop(); 
 }
 
-
-let highlightSize; 
-let blushColor; 
-let eyeLeft = {x:150, y: 200, r: 10};
-let eyeRight = {x:250, y: 200, r: 10};
-
-
-let highlightLeftX, highlightLeftY;
-let highlightRightX, highlightRightY;
 
 
 function draw() {
@@ -76,7 +77,7 @@ function draw() {
   ellipse(eyeLeft.x, eyeLeft.y, 12, 12);
   ellipse(eyeRight.x, eyeRight.y, 12, 12);
 
-
+  // Highlights
   fill(255);
   updateHighlight(eyeLeft, "left");
   updateHighlight(eyeRight, "right");
@@ -97,7 +98,9 @@ function draw() {
   ellipse(280, 250, 60, 40);
 }
 
-//hightlight(follow)
+
+
+// Highlight follows mouse
 function updateHighlight(eye, side) {
   let dx = mouseX - eye.x;
   let dy = mouseY - eye.y;
@@ -124,6 +127,8 @@ function updateHighlight(eye, side) {
 }
 
 
+
+
 function mousePressed() {
   randomizeAll();
 }
@@ -137,6 +142,5 @@ function randomizeAll() {
   let b = random(120, 180);
   let alpha = random(50, 100);
   blushColor = color(r, g, b, alpha);
+}
 
-  }
-    

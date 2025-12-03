@@ -4,6 +4,17 @@ function setup() {
   canvas = createCanvas(400, 400);
   // attach the canvas to the div in your HTML
   canvas.parent("sketch-container");
+  
+  background(128,128,128);
+  randomizeAll(); 
+
+  highlightLeftX = eyeLeft.x;
+  highlightLeftY = eyeLeft.y;
+  highlightRightX = eyeRight.x;
+  highlightRightY = eyeRight.y;
+
+  loop(); 
+}
 
 
 let highlightSize; 
@@ -15,18 +26,6 @@ let eyeRight = {x:250, y: 200, r: 10};
 let highlightLeftX, highlightLeftY;
 let highlightRightX, highlightRightY;
 
-function setup() {
-  createCanvas(400, 400); 
-  background(128,128,128);
-  randomizeAll(); 
-
-  highlightLeftX = eyeLeft.x;
-  highlightLeftY = eyeLeft.y;
-  highlightRightX = eyeRight.x;
-  highlightRightY = eyeRight.y;
-
-  loop(); 
-}
 
 function draw() {
   // Ears

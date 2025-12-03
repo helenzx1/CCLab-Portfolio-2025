@@ -1,4 +1,4 @@
-// --- 把这些变量提前到最前面 ---
+
 let highlightSize; 
 let blushColor; 
 
@@ -17,7 +17,7 @@ function setup() {
   background(128,128,128);
   randomizeAll(); 
 
-  // 这里现在 eyeLeft 和 eyeRight 已经存在，不会报错
+
   highlightLeftX = eyeLeft.x;
   highlightLeftY = eyeLeft.y;
   highlightRightX = eyeRight.x;

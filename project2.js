@@ -8,7 +8,6 @@ function setup() {
 
 let highlightSize; 
 let blushColor; 
-
 let eyeLeft = {x:150, y: 200, r: 10};
 let eyeRight = {x:250, y: 200, r: 10};
 
@@ -16,6 +15,8 @@ let eyeRight = {x:250, y: 200, r: 10};
 let highlightLeftX, highlightLeftY;
 let highlightRightX, highlightRightY;
 
+function setup() {
+  createCanvas(400, 400); 
   background(128,128,128);
   randomizeAll(); 
 
@@ -139,3 +140,4 @@ function randomizeAll() {
   blushColor = color(r, g, b, alpha);
 
   }
+    

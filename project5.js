@@ -11,7 +11,7 @@ let timer = 0;
 
 function setup() {
   // create the canvas
-  canvas = createCanvas(400, 600);
+  canvas = createCanvas(600, 600);
   // attach the canvas to the div in your HTML
   canvas.parent("sketch-container");
   frameRate(24);

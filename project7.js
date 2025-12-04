@@ -47,9 +47,7 @@ function preload() {
 }
 
 function setup() {
-  // create the canvas
-  canvas = createCanvas(600, 400);  // 保留 600×400
-  // attach the canvas to the div in your HTML
+  canvas = createCanvas(600, 400);  
   canvas.parent("sketch-container");
 
   textFont("monospace");
@@ -62,7 +60,6 @@ function setup() {
     bgm.loop();
   }
 
-  // Initialize character navigator
   player = new Player();
 }
 
@@ -114,7 +111,6 @@ function drawStart() {
 }
 
 function drawGame() {
-  //Folder
   let folderSize = 190;
   let folderX = folderSize / 2 + 20; 
   let folderY = height / 2;
@@ -314,7 +310,6 @@ function fadeMusic(vol) {
   if (bgm && bgm.isPlaying()) bgm.amp(vol, 2);
 }
 
-//CHARACTER NAVIGATOR CLASS
 class Player {
   constructor() {
     this.x = width - 80; 

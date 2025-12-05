@@ -28,7 +28,7 @@ let jamesImgDefault;
 let jamesImgFail;
 let jamesImgFail2;
 let earthImg;
-let earth1Img; 
+let earth1Img;
 let folderImg;
 let bgm;
 
@@ -41,13 +41,16 @@ function preload() {
   jamesImgFail = loadImage("James1.PNG");
   jamesImgFail2 = loadImage("James2.PNG");
   earthImg = loadImage("earth.PNG");
-  earth1Img = loadImage("earth1.PNG"); 
+  earth1Img = loadImage("earth1.PNG");
   folderImg = loadImage("folder.jpeg");
   bgm = loadSound("123.mp3");
 }
 
 function setup() {
-  canvas = createCanvas(600, 400);  
+  // create the canvas
+  canvas = createCanvas(600, 400);
+
+  // attach the canvas to the div in your HTML
   canvas.parent("sketch-container");
 
   textFont("monospace");
@@ -60,6 +63,7 @@ function setup() {
     bgm.loop();
   }
 
+  //Initialize character navigator
   player = new Player();
 }
 
@@ -75,13 +79,12 @@ function draw() {
 }
 
 function drawBackground() {
- 
   if (scene === 2 && earth1Img) {
     let scale = Math.max(width / earth1Img.width, height / earth1Img.height);
     imageMode(CENTER);
     image(earth1Img, width / 2, height / 2, earth1Img.width * scale, earth1Img.height * scale);
     imageMode(CORNER);
-  } 
+  }
 
   else if ((scene === 0 || scene === 3) && earthImg) {
     let scale = Math.max(width / earthImg.width, height / earthImg.height);
@@ -111,13 +114,15 @@ function drawStart() {
 }
 
 function drawGame() {
+  //Folder
   let folderSize = 190;
-  let folderX = folderSize / 2 + 20; 
+  let folderX = folderSize / 2 + 20;
   let folderY = height / 2;
   let hasInteractedWithFolder = false;
   if (dist(player.x, player.y, folderX, folderY) < (player.size / 2 + folderSize / 2)) {
     hasInteractedWithFolder = true;
   }
+
   player.move();
   drawImg(player.x, player.y, hasDeletedOnce, player.size);
 
@@ -157,8 +162,8 @@ function drawGame() {
 
   fill(120, 200, 255);
   textSize(14);
-  textAlign(LEFT, BOTTOM); 
-  text("A (Left) | D (Right)", 20, height - 20); 
+  textAlign(LEFT, BOTTOM);
+  text("A (Left) | D (Right)", 20, height - 20);
   textAlign(CENTER, CENTER);
 
   if (millis() - lastSecond > 1000) {
@@ -184,10 +189,11 @@ function drawGame() {
 
 function drawSuccess() {
   drawImg(width / 2, height - 110, false, 220);
+
   fill(255);
   textSize(24);
   text("You saved the world again！！！", width / 2, height / 2 - 100);
-  
+
   fill(255);
   textSize(14);
   text("Press R to restart", width / 2, height - 240);
@@ -252,7 +258,7 @@ function drawSpeechBubble(x, y, txt) {
   noStroke();
   fill(255);
   rect(x, y, 150, 50, 14);
-  fill(60); 
+  fill(60);
   textSize(11);
   text(txt, x + 75, y + 25);
 }
@@ -310,16 +316,17 @@ function fadeMusic(vol) {
   if (bgm && bgm.isPlaying()) bgm.amp(vol, 2);
 }
 
+//CHARACTER NAVIGATOR CLASS
 class Player {
   constructor() {
-    this.x = width - 80; 
+    this.x = width - 80;
     this.y = height - 120;
     this.size = 150;
     this.speed = 3;
   }
 
   move() {
-    if (keyIsDown(65)) this.x -= this.speed; 
+    if (keyIsDown(65)) this.x -= this.speed;
     if (keyIsDown(68)) this.x += this.speed;
 
     this.x = constrain(this.x, this.size / 2, width - this.size / 2);

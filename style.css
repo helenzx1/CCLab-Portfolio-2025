@@ -12,7 +12,6 @@ body {
   color: #2f2f2f;
   letter-spacing: 0.2px;
 
-  /* page fade-in */
   animation: fadeIn 0.6s ease-out;
 }
 
@@ -22,17 +21,31 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Page layout */
+/* Main content container - soft card layout */
 main {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
+  padding: 40px 50px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.05);
 }
 
-/* Navigation */
+/* Navigation – soft glassmorphism */
+nav {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  padding: 12px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  margin-bottom: 32px;
+}
+
 nav ul {
   list-style: none;
   padding: 0;
-  margin: 0 0 32px 0;
+  margin: 0;
   display: flex;
   gap: 28px;
 }
@@ -46,7 +59,7 @@ nav a {
   transition: 0.25s ease;
 }
 
-/* Soft pastel underline */
+/* Gradient sliding underline */
 nav a::after {
   content: "";
   position: absolute;
@@ -54,21 +67,17 @@ nav a::after {
   bottom: -2px;
   width: 0%;
   height: 2px;
-  background: #ccb7ff;
-  transition: width 0.25s;
+  background: linear-gradient(90deg, #d0baff, #e8ddff);
+  background-size: 200%;
+  transition: width 0.25s, background-position 0.4s;
 }
 
 nav a:hover::after {
   width: 100%;
+  background-position: 100%;
 }
 
-
-
-/* ---------------------------------------------------
-   Korean soft high-design style – Updated Titles
---------------------------------------------------- */
-
-/* H1 Title */
+/* Korean soft high-design h1 */
 h1 {
   font-size: 2.9rem;
   margin-bottom: 28px;
@@ -84,22 +93,19 @@ h1 {
   -webkit-text-fill-color: transparent;
 
   font-weight: 900;
-  letter-spacing: 0.3px;
+  letter-spacing: 1px;
 
-  /* subtle glow */
   text-shadow: 0 2px 12px rgba(140, 120, 200, 0.15);
 }
 
-/* Section titles (H2) */
+/* Section titles */
 h2 {
   font-size: 1.55rem;
   margin-top: 44px;
   margin-bottom: 14px;
-
   color: #5f4d84;
   font-weight: 700;
   letter-spacing: 0.2px;
-
   position: relative;
 }
 
@@ -115,64 +121,69 @@ h2::after {
   opacity: 0.8;
 }
 
-
-
-/* Paragraphs */
+/* Paragraphs – lighter for Korean softness */
 p {
-  line-height: 1.7;
+  line-height: 1.75;
   font-size: 1rem;
+  font-weight: 300;
   color: #3a3a3a;
   max-width: 700px;
+
+  background: linear-gradient(180deg, #000000 0%, #4b4b4b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.85;
 }
 
-
-
-/* ---------------------------------------------------
-    About Page Layout (Image + Text 左右布局)
---------------------------------------------------- */
-
+/* About Page Layout */
 .about-container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 40px;
-    max-width: 1000px;
-    margin: 60px auto;
-    padding: 0 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 20px;
 }
 
 .about-text {
-    flex: 1.2;
+  flex: 1.2;
 }
 
+/* Elegant divider under About section */
+.about-text::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 2px;
+  margin-top: 32px;
+  background: linear-gradient(90deg, #e9dfff, #f5f0ff);
+  opacity: 0.6;
+}
+
+/* Profile photo – glow frame + floating animation */
 .profile-photo {
-    width: 320px;
-    height: auto;
-    border-radius: 12px;
-    object-fit: cover;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 320px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+
+  border: 4px solid;
+  border-image: linear-gradient(45deg, #d9c8ff, #e4d6ff, #bcaeff) 1;
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+  animation: float 5s ease-in-out infinite;
 }
 
-/* Mobile responsive for About page */
-@media (max-width: 768px) {
-    .about-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .profile-photo {
-        margin-top: 20px;
-        width: 70%;
-        max-width: 300px;
-    }
+/* Soft floating motion */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
 }
 
-
-
-/* ---------------------------------------------------
-    Project iframe (for sketches / p5.js)
---------------------------------------------------- */
+/* Project iframe */
 iframe {
   width: 100%;
   max-width: 820px;
@@ -184,17 +195,26 @@ iframe {
   transition: 0.3s ease;
 }
 
-/* Soft zoom hover */
 iframe:hover {
   transform: scale(1.01);
   box-shadow: 0 18px 40px rgba(0,0,0,0.12);
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
+  .profile-photo {
+    margin-top: 20px;
+    width: 70%;
+    max-width: 300px;
+  }
+}
 
-/* ---------------------------------------------------
-    Mobile adjustments
---------------------------------------------------- */
 @media (max-width: 600px) {
   body {
     padding: 24px;
@@ -207,6 +227,11 @@ iframe:hover {
   nav ul {
     gap: 16px;
   }
+
+  iframe {
+    height: 380px;
+  }
+}
 
   iframe {
     height: 380px;

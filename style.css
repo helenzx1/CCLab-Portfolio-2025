@@ -8,17 +8,28 @@ body {
   margin: 0;
   padding: 48px;
   font-family: "Pretendard", "Inter", "Noto Sans KR", sans-serif;
-  background: radial-gradient(circle at 20% 20%, #faf5ff 0%, #f3e9ff 30%, #e9f2ff 70%, #fefbff 100%);
+  background: radial-gradient(
+    circle at 20% 20%,
+    #faf5ff 0%,
+    #f3e9ff 30%,
+    #e9f2ff 70%,
+    #fefbff 100%
+  );
   color: #2f2f2f;
   letter-spacing: 0.2px;
-
   animation: fadeIn 0.6s ease-out;
 }
 
 /* Fade animation */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Main content container - soft card layout */
@@ -81,20 +92,11 @@ nav a:hover::after {
 h1 {
   font-size: 2.9rem;
   margin-bottom: 28px;
-
-  background: linear-gradient(
-    90deg,
-    #9d8ce0,
-    #b6a4ef,
-    #c9b6ff,
-    #b19de3
-  );
+  background: linear-gradient(90deg, #9d8ce0, #b6a4ef, #c9b6ff, #b19de3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
   font-weight: 900;
   letter-spacing: 1px;
-
   text-shadow: 0 2px 12px rgba(140, 120, 200, 0.15);
 }
 
@@ -121,7 +123,7 @@ h2::after {
   opacity: 0.8;
 }
 
-/* Paragraphs – lighter for Korean softness */
+/* Paragraphs – Korean softness */
 p {
   line-height: 1.75;
   font-size: 1rem;
@@ -129,7 +131,7 @@ p {
   color: #3a3a3a;
   max-width: 700px;
 
-  background: linear-gradient(180deg, #000000 0%, #4b4b4b 100%);
+  background: linear-gradient(180deg, #000000, #4b4b4b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   opacity: 0.85;
@@ -178,9 +180,15 @@ p {
 
 /* Soft floating motion */
 @keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /* Project iframe */
@@ -191,13 +199,13 @@ iframe {
   border: none;
   border-radius: 18px;
   background: white;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   transition: 0.3s ease;
 }
 
 iframe:hover {
   transform: scale(1.01);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
 /* Responsive */

@@ -1,5 +1,5 @@
 /* -----------------------------------
-   Global Styles – soft sketchy aesthetic
+   Global Styles
 ----------------------------------- */
 * {
   box-sizing: border-box;
@@ -9,254 +9,204 @@ body {
   margin: 0;
   padding: 48px;
   font-family: "Pretendard", "Inter", "Noto Sans KR", sans-serif;
-
-  /* Soft pastel gradient + paper grain */
-  background:
-    radial-gradient(
-      circle at 20% 20%,
-      #faf5ff 0%,
-      #f3e9ff 30%,
-      #e9f2ff 70%,
-      #fefbff 100%
-    ),
-    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4//8/AwAI/wN7zvE5VQAAAABJRU5ErkJggg==");
-  background-size: cover;
-  color: #2f2f2f;
-
-  animation: fadeIn 0.6s ease-out;
-}
-
-/* Soft hand-drawn fade */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  background: radial-gradient(circle at 20% 20%, #faf5ff 0%, #f4f0ff 40%, #e8e3ff 100%);
+  background-attachment: fixed;
+  color: #333;
 }
 
 /* -----------------------------------
-   Main Content Container – soft hand-drawn border
+   Main Content Container
 ----------------------------------- */
 main {
   max-width: 960px;
   margin: 0 auto;
   padding: 40px 50px;
-
-  background: rgba(255, 255, 255, 0.62);
-  backdrop-filter: blur(10px);
-
-  border-radius: 26px;
-
-  /* Hand-drawn border */
-  border: 3px solid #d8c9ff;
-  box-shadow:
-    0 4px 18px rgba(0, 0, 0, 0.07),
-    0 0 0 4px rgba(230, 215, 255, 0.35);
-
-  /* irregular sketch edge */
-  outline: 2px dashed rgba(180, 150, 240, 0.3);
-  outline-offset: 6px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 28px;
+  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.05);
 }
 
 /* -----------------------------------
-   Navigation – rounded, cuter
+   Navigation (Glass style)
 ----------------------------------- */
 nav {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
   padding: 14px 22px;
   border-radius: 18px;
-
-  border: 2px solid #e4d6ff;
-  box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.04),
-    0 0 10px rgba(195, 175, 255, 0.15);
-
-  margin-bottom: 32px;
+  margin-bottom: 34px;
+  display: flex;
+  gap: 28px;
 }
 
 nav a {
-  color: #856dcc;
-  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  padding-bottom: 6px;
   position: relative;
-  padding: 6px 2px;
+  color: #5548a0;
   transition: 0.22s ease;
 }
 
-/* Smol cute underline */
+nav a:hover {
+  color: #7b6cd9;
+}
+
 nav a::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: -3px;
-  width: 0%;
-  height: 3px;
-  background: #decfff;
-  border-radius: 6px;
-  transition: width 0.25s;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #bba7ff, #c7b9ff);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
 }
 
 nav a:hover::after {
-  width: 100%;
+  transform: scaleX(1);
+  background-position: 100%;
 }
 
 /* -----------------------------------
-   Typography – hand-drawn feel
+   Typography (Titles & Text)
 ----------------------------------- */
 h1 {
-  font-size: 2.8rem;
+  font-size: 2.9rem;
   margin-bottom: 28px;
-
-  background: linear-gradient(90deg, #a69df0, #c7bcff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  font-weight: 900;
-  letter-spacing: 1px;
-
-  /* soft pencil shade */
-  text-shadow: 2px 2px 0 rgba(240, 225, 255, 0.8);
+  letter-spacing: -0.5px;
+  color: #5548a0;
+  text-shadow: 0 2px 12px rgba(140, 120, 200, 0.15);
 }
 
 h2 {
   font-size: 1.55rem;
   margin-top: 44px;
-  margin-bottom: 14px;
-  color: #6c59a3;
-  font-weight: 700;
+  margin-bottom: 12px;
   position: relative;
-  letter-spacing: 0.4px;
+  color: #6a5ac7;
 }
 
-/* hand-drawn underline bar */
 h2::after {
   content: "";
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-  width: 55px;
-  height: 4px;
-  border-radius: 6px;
-
-  background: #e8dcff;
-  box-shadow: 0 1px 4px rgba(130, 100, 200, 0.2);
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: #cfc5ff;
+  margin-top: 6px;
+  border-radius: 2px;
+  opacity: 0.8;
 }
 
 p {
   line-height: 1.75;
   font-size: 1rem;
-  font-weight: 300;
-  color: #3a3a3a;
-
-  /* subtle pencil texture */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background: linear-gradient(#333, #555);
+  margin-bottom: 18px;
+  color: #4a4a4a;
   opacity: 0.85;
 }
 
 /* -----------------------------------
-   About Page – hand-drawn border frame
+   About Page Layout
 ----------------------------------- */
-.profile-photo {
-  width: 320px;
-  border-radius: 18px;
-
-  border: 3px solid #d5c4ff;
-  outline: 2px dashed #e9dcff;
-  outline-offset: 5px;
-
-  box-shadow:
-    0 0 16px rgba(150, 120, 250, 0.16),
-    3px 3px 0 rgba(240, 225, 255, 0.9);
-
-  animation: float 4.5s ease-in-out infinite;
+.about-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 24px;
 }
 
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-7px); }
-  100% { transform: translateY(0); }
+.about-text {
+  flex: 1.2;
+}
+
+.about-text::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #d9d0ff;
+  margin: 30px 0;
+  opacity: 0.6;
 }
 
 /* -----------------------------------
-   Project Thumbnails – cute wobble + sketch borders
+   Profile photo with soft floating animation
+----------------------------------- */
+.profile-photo {
+  width: 320px;
+  height: auto;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* -----------------------------------
+   Project iframe
+----------------------------------- */
+iframe {
+  width: 100%;
+  max-width: 820px;
+  height: 440px;
+  border: none;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  transition: 0.25s ease;
+}
+
+iframe:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* -----------------------------------
+   Project Thumbnails Grid
 ----------------------------------- */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 26px;
+  gap: 24px;
+  margin-top: 20px;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: 0.22s ease;
-}
-
-/* playful hover movement */
-.project-card:hover {
-  transform: translateY(-4px) rotate(-1deg);
+  text-align: center;
 }
 
 .project-thumb-large {
   width: 100%;
   height: 140px;
   object-fit: cover;
-  border-radius: 16px;
-
-  border: 3px solid #eadcff;
-  outline: 2px dashed rgba(205, 180, 255, 0.6);
-  outline-offset: 4px;
-
-  box-shadow:
-    0 4px 14px rgba(0, 0, 0, 0.1),
-    0 0 18px rgba(175, 145, 255, 0.12);
-
-  transition: 0.25s ease;
-}
-
-.project-thumb-large:hover {
-  transform: scale(1.03) rotate(1deg);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  margin-bottom: 10px;
 }
 
 /* -----------------------------------
-   Project iframe – soft sketch frame
------------------------------------ */
-iframe {
-  width: 100%;
-  max-width: 820px;
-  height: 500px;
-  border-radius: 18px;
-
-  background: white;
-
-  border: 3px solid #e5d6ff;
-  outline: 2px dashed #f2eaff;
-  outline-offset: 6px;
-
-  box-shadow:
-    0 12px 26px rgba(0, 0, 0, 0.08),
-    0 0 25px rgba(180, 150, 255, 0.15);
-
-  transition: 0.3s ease;
-}
-
-iframe:hover {
-  transform: scale(1.01) rotate(-0.5deg);
-}
-
-/* -----------------------------------
-   Responsive
+   Responsive Design
 ----------------------------------- */
 @media (max-width: 768px) {
   .about-container {
     flex-direction: column;
-    text-align: center;
   }
 }
+

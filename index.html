@@ -3,33 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <title>My Portfolio</title>
-   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- 确保缩略图布局生效的最小样式（不会和你的 style.css 冲突） -->
+  <style>
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .project-thumb {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      margin-bottom: 10px;
+      background: #f2f2f2;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+  </style>
 </head>
+
 <body>
   <h1>My Portfolio</h1>
+
   <main>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="extra.html">Extra</a></li>
+      </ul>
+    </nav>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="extra.html">Extra</a></li>
-    </ul>
-  </nav>
+    <h2>Projects</h2>
 
-  <h2>Projects</h2>
-  <ul>
-    <li><a href="project1.html">Project 1</a></li>
-    <li><a href="project2.html">Project 2</a></li>
-    <li><a href="project3.html">Project 3</a></li>
-    <li><a href="project4.html">Project 4</a></li>
-    <li><a href="project5.html">Project 5</a></li>
-    <li><a href="project6.html">Project 6</a></li>
-    <li><a href="project7.html">Project 7</a></li>
-  </ul>
+    <!-- 项目缩略图 + 项目标题 -->
+    <div class="projects-grid">
 
-  <p>
-    This is the home page for my portfolio. Use the links above to explore my projects and learn more about me.
-  </p>
+      <div class="project-card">
+        <img src="project1.jpg" alt="Project 1 thumbnail" class="project-thumb">
+        <a href="project1.html">Project 1</a>
+      </div>
+
+      <div class="project-card">
+        <img src="project2.jpg" alt="Project 2 thumbnail" class="project-thumb">
+        <a href="project2.html">Project 2</a>
+      </div>
+
+      <div class="project-card">
+        <img src="project3.jpg" alt="Project 3 thumbnail" class="project-thumb">
+        <a href="project3.html">Project 3</a>
+      </div>
+
+      <div class="project-card">
+        <img src="project4.jpg" alt="Project 4 thumbnail" class="project-thumb">
+        <a href="project4.html">Project 4</a>
+      </div>
+
+      <div class="project-card">
+        <img src="project5.jpg" alt="Project 5 thumbnail" class="project-thumb">
+        <a href="project5.html">Project 5</a>
+      </div>
+
+      <div class="project-card">
+        <img src="project6.jpg" alt="Project 6 thumbnail" class="project-thumb">
+        <a href="project6.html">Project 6</a>
+      </div>
+
+      <div class="project-card">
+        <img src="project7.jpg" alt="Project 7 thumbnail" class="project-thumb">
+        <a href="project7.html">Project 7</a>
+      </div>
+
+    </div>
+
+    <p>
+      This is the home page for my portfolio. Use the links above to explore my projects and learn more about me.
+    </p>
+  </main>
+
 </body>
 </html>
+

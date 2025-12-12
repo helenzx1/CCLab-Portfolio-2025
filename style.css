@@ -306,6 +306,125 @@ iframe:hover {
 }
 
 /* -----------------------------------
+   Enhanced Sticky Note / Sticker Cards
+   Multi-theme + tape + corner fold
+----------------------------------- */
+
+.sticker-card {
+  width: 280px;
+  padding: 22px 20px;
+  border-radius: 18px;
+  background: #fffdf8;
+  border: 3px solid #e7d6ff;
+
+  position: relative;
+  transform: rotate(1.2deg);
+  transition: 0.28s ease;
+  font-family: "Marker Felt", "Comic Sans MS", sans-serif;
+
+  box-shadow:
+    3px 3px 0 #e2d3ff,
+    0 6px 22px rgba(0, 0, 0, 0.08);
+}
+
+/* hover: straighter + floating */
+.sticker-card:hover {
+  transform: rotate(0deg) translateY(-5px);
+}
+
+/* dashed outline */
+.sticker-card::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 22px;
+  border: 2px dashed rgba(180, 150, 255, 0.45);
+  transform: rotate(-2deg);
+  pointer-events: none;
+}
+
+/* corner fold */
+.sticker-card::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #ffffff 0%, #e8e0ff 100%);
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+  opacity: 0.7;
+}
+
+/* --------------------------
+   THEMES (color variants)
+-------------------------- */
+
+/* Pink */
+.sticker-pink {
+  background: #fff5f9;
+  border-color: #ffd4e8;
+}
+.sticker-pink::before {
+  border-color: rgba(255, 180, 220, 0.45);
+}
+.sticker-pink h3 { color: #e26fa8; }
+
+/* Purple */
+.sticker-purple {
+  background: #faf5ff;
+  border-color: #e5d2ff;
+}
+.sticker-purple::before {
+  border-color: rgba(200, 170, 255, 0.5);
+}
+.sticker-purple h3 { color: #8a71d6; }
+
+/* Blue */
+.sticker-blue {
+  background: #f2faff;
+  border-color: #c9e6ff;
+}
+.sticker-blue::before {
+  border-color: rgba(150, 200, 255, 0.45);
+}
+.sticker-blue h3 { color: #5693d8; }
+
+/* Yellow (cute memo) */
+.sticker-yellow {
+  background: #fffceb;
+  border-color: #ffe9a8;
+}
+.sticker-yellow::before {
+  border-color: rgba(255, 215, 130, 0.45);
+}
+.sticker-yellow h3 { color: #c89a2d; }
+
+/* -----------------------------------
+   Tape Decoration (optional)
+----------------------------------- */
+
+.sticker-tape {
+  position: relative;
+}
+
+.sticker-tape::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 45%;
+  width: 70px;
+  height: 28px;
+
+  background: rgba(255, 255, 255, 0.75);
+  border: 1.5px solid rgba(200, 200, 200, 0.5);
+  border-radius: 6px;
+
+  transform: rotate(-6deg);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* -----------------------------------
    Responsive
 ----------------------------------- */
 @media (max-width: 768px) {
@@ -314,4 +433,5 @@ iframe:hover {
     text-align: center;
   }
 }
+
 

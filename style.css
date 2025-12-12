@@ -152,7 +152,6 @@ p {
   font-weight: 300;
   color: #3a3a3a;
 
-  /* subtle pencil texture */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background: linear-gradient(#333, #555);
@@ -199,7 +198,6 @@ p {
   transition: 0.22s ease;
 }
 
-/* playful hover movement */
 .project-card:hover {
   transform: translateY(-4px) rotate(-1deg);
 }
@@ -249,6 +247,62 @@ iframe {
 
 iframe:hover {
   transform: scale(1.01) rotate(-0.5deg);
+}
+
+/* -----------------------------------
+   Sticky Note / Sticker Style Card
+   (Project description card)
+----------------------------------- */
+.note-card {
+  width: 280px;
+  padding: 20px;
+  background: #fffdf7;
+  border: 3px solid #e7d6ff;
+  border-radius: 18px;
+
+  font-family: "Marker Felt", "Comic Sans MS", sans-serif;
+  color: #444;
+
+  box-shadow:
+    3px 3px 0 #e2d3ff,
+    0 6px 16px rgba(0, 0, 0, 0.08);
+
+  position: relative;
+  transform: rotate(1deg);
+  transition: 0.25s ease;
+}
+
+.note-card:hover {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+/* hand-drawn outer border */
+.note-card::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+
+  border: 2px dashed rgba(190, 160, 255, 0.6);
+  border-radius: 22px;
+  pointer-events: none;
+  transform: rotate(-1.8deg);
+}
+
+.note-card h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #6d5bb5;
+}
+
+.note-card p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: #555;
+  -webkit-text-fill-color: #555;
 }
 
 /* -----------------------------------

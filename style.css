@@ -432,6 +432,24 @@ iframe:hover {
     flex-direction: column;
     text-align: center;
   }
+   /* -----------------------------------
+   Cute Hand-Drawn Border for Project Thumbnails
+----------------------------------- */
+
+.project-thumb-large {
+  border: 4px solid #e5d9ff;                 /* 主边框（淡紫） */
+  border-radius: 18px;
+
+  /* 手绘感虚线外框 */
+  outline: 2px dashed rgba(190, 160, 255, 0.45);
+  outline-offset: 6px;
+
+  /* 柔和阴影 */
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.08),
+    0 0 18px rgba(175, 145, 255, 0.12);
+}
+
 }
 
 

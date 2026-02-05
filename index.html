@@ -2,106 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>My Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home · My Portfolio</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- 确保缩略图布局生效的最小样式（不会和你的 style.css 冲突） -->
-  <style>
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 24px;
-      margin-top: 20px;
-    }
-
-    .project-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .project-thumb {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-      margin-bottom: 10px;
-      background: #f2f2f2;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    nav ul li {
-      display: inline;
-    }
-  </style>
 </head>
 
-<body>
-  <h1>My Portfolio</h1>
+<body class="bg-bows">
+  <div class="frame">
 
-  <main>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="extra.html">Extra</a></li>
-      </ul>
-    </nav>
+    <!-- Header -->
+    <header class="banner">
+      <div class="banner-inner">
+        <div class="banner-toplace">
+          <div class="pixel-title">MY PORTFOLIO</div>
+          <div class="banner-sub">CC Lab + Advanced CC Lab · webcore pink edition</div>
+        </div>
+      </div>
+    </header>
 
-    <h2>Projects</h2>
+    <!-- Left Nav -->
+    <aside class="panel nav-panel">
+      <div class="panel-title">navigation</div>
+      <nav class="nav-list">
+        <a class="nav-btn active" href="index.html">home</a>
+        <a class="nav-btn" href="projects.html">projects</a>
+        <a class="nav-btn" href="about.html">about me</a>
+        <a class="nav-btn" href="extra.html">extra</a>
+      </nav>
 
-    <!-- 项目缩略图 + 项目标题 -->
-    <div class="projects-grid">
+      <div class="mini-sticker">
+        <div class="mini-title">now playing</div>
+        <div class="mini-box">
+          <div class="mini-row"><span>mood:</span> sweet + dreamy</div>
+          <div class="mini-row"><span>vibe:</span> kawaii webcore</div>
+          <div class="mini-row"><span>tool:</span> CSS Grid</div>
+        </div>
+      </div>
+    </aside>
 
-      <div class="project-card">
-        <img src="project1.jpg" alt="Project 1 thumbnail" class="project-thumb">
-        <a href="project1.html">Project 1</a>
+    <!-- Main Content -->
+    <main class="panel main-panel">
+      <div class="panel-title">welcome</div>
+
+      <div class="scrollbox">
+        <p>
+          Welcome to my portfolio! This site is a redesigned version using <b>CSS Grid</b>.
+          It includes my <b>CC Lab</b> projects (previous works) and my <b>Advanced CC Lab</b> projects (new works this semester).
+        </p>
+
+        <div class="badge-row">
+          <span class="badge">best viewed with love ♡</span>
+          <span class="badge">pink mode: on</span>
+          <span class="badge">no CSS libraries</span>
+        </div>
+
+        <p class="muted">
+          Use the navigation on the left to explore. ✿
+        </p>
       </div>
 
-      <div class="project-card">
-        <img src="project2.jpg" alt="Project 2 thumbnail" class="project-thumb">
-        <a href="project2.html">Project 2</a>
+      <div class="cta-row">
+        <a class="cute-btn" href="projects.html">go to projects</a>
+        <a class="cute-btn ghost" href="about.html">about me</a>
       </div>
 
-      <div class="project-card">
-        <img src="project3.jpg" alt="Project 3 thumbnail" class="project-thumb">
-        <a href="project3.html">Project 3</a>
+      <div class="panel-grid-2">
+        <section class="subpanel">
+          <div class="subpanel-title">FAQ (sort of)</div>
+          <div class="scrollbox small">
+            <p><b>Q:</b> Why this style?</p>
+            <p><b>A:</b> I love soft pink + nostalgic “old web” layouts. It feels like a personal room.</p>
+            <p><b>Q:</b> What’s the goal?</p>
+            <p><b>A:</b> Keep structure clear, make projects easy to browse, and show personality.</p>
+          </div>
+        </section>
+
+        <section class="subpanel">
+          <div class="subpanel-title">update log</div>
+          <div class="scrollbox small">
+            <p>2/5 — switched layout to CSS Grid</p>
+            <p>2/5 — split projects into CC Lab + Advanced CC Lab</p>
+            <p>2/5 — unified navigation + theme</p>
+          </div>
+        </section>
       </div>
 
-      <div class="project-card">
-        <img src="project4.jpg" alt="Project 4 thumbnail" class="project-thumb">
-        <a href="project4.html">Project 4</a>
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside class="panel side-panel">
+      <div class="panel-title">site stats</div>
+      <div class="scrollbox small">
+        <p><b>visitor #</b> 0000001</p>
+        <p><b>theme</b> pink bows</p>
+        <p><b>layout</b> CSS Grid</p>
+        <p><b>status</b> ✦ building ✦</p>
       </div>
 
-      <div class="project-card">
-        <img src="project5.jpg" alt="Project 5 thumbnail" class="project-thumb">
-        <a href="project5.html">Project 5</a>
+      <div class="mini-sticker">
+        <div class="mini-title">quick links</div>
+        <div class="mini-box">
+          <a class="tiny-link" href="projects.html">→ projects</a><br/>
+          <a class="tiny-link" href="extra.html">→ extra</a><br/>
+          <a class="tiny-link" href="about.html">→ about</a>
+        </div>
       </div>
+    </aside>
 
-      <div class="project-card">
-        <img src="project6.jpg" alt="Project 6 thumbnail" class="project-thumb">
-        <a href="project6.html">Project 6</a>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-inner">
+        made with ♡ · HTML + CSS Grid · hosted on GitHub Pages
       </div>
+    </footer>
 
-      <div class="project-card">
-        <img src="project7.jpg" alt="Project 7 thumbnail" class="project-thumb">
-        <a href="project7.html">Project 7</a>
-      </div>
-
-    </div>
-
-    <p>
-      This is the home page for my portfolio. Use the links above to explore my projects and learn more about me.
-    </p>
-  </main>
-
+  </div>
 </body>
 </html>
 

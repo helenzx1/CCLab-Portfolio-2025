@@ -3,47 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Me</title>
+  <title>About · My Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
-  <header class="site-header">
-    <nav class="site-nav">
-      <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
-      <a href="about.html" class="active">About</a>
-      <a href="extra.html">Extra</a>
-    </nav>
-  </header>
+<body class="bg-bows">
+  <div class="frame">
 
-  <main class="page about-grid">
-    <section class="about-text">
-      <h1>About Me</h1>
+    <header class="banner">
+      <div class="banner-inner">
+        <div class="banner-toplace">
+          <div class="pixel-title">ABOUT ME</div>
+          <div class="banner-sub">a little profile card</div>
+        </div>
+      </div>
+    </header>
 
-      <h2>Education</h2>
-      <p>
-        I’m studying Design and Technology at Parsons, focusing on interaction design,
-        creative tech, and making ideas real through prototyping.
-      </p>
-
-      <h2>Hobbies & Interests</h2>
-      <p>
-        I love creating things—digital art, small interactive pieces, and anything that mixes visuals
-        with technology. I enjoy working with different materials and tools.
-      </p>
-
-      <h2>Career Goals</h2>
-      <p>
-        I want to work in interaction design and creative technology, bridging design with engineering to
-        build meaningful, thoughtful, and playful experiences.
-      </p>
-    </section>
-
-    <!-- 你 repo 里是 profile.png（小写），就保持这样 -->
-    <aside class="about-photo-wrap">
-      <img src="profile.png" alt="My photo" class="profile-photo" />
+    <aside class="panel nav-panel">
+      <div class="panel-title">navigation</div>
+      <nav class="nav-list">
+        <a class="nav-btn" href="index.html">home</a>
+        <a class="nav-btn" href="projects.html">projects</a>
+        <a class="nav-btn active" href="about.html">about me</a>
+        <a class="nav-btn" href="extra.html">extra</a>
+      </nav>
     </aside>
-  </main>
+
+    <main class="panel main-panel">
+      <div class="panel-title">profile</div>
+
+      <div class="about-grid">
+        <section class="subpanel">
+          <div class="subpanel-title">hello ✿</div>
+          <div class="scrollbox">
+            <p>
+              I’m studying Design and Technology at Parsons, focusing on interaction design,
+              creative tech, and making ideas real through prototyping.
+            </p>
+
+            <p><b>Interests:</b> digital art, playful systems, interactive experiences.</p>
+            <p><b>Goal:</b> build thoughtful and cute experiences that still feel clean and professional.</p>
+          </div>
+        </section>
+
+        <aside class="subpanel">
+          <div class="subpanel-title">photo</div>
+          <div class="photo-wrap">
+            <img src="profile.png" alt="My photo" class="profile-photo" />
+          </div>
+          <div class="badge-row" style="margin-top: 10px;">
+            <span class="badge">Parsons D&T</span>
+            <span class="badge">Interaction</span>
+            <span class="badge">Creative Tech</span>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <aside class="panel side-panel">
+      <div class="panel-title">mini log</div>
+      <div class="scrollbox small">
+        <p>✿ soft pink web layout</p>
+        <p>✿ CSS Grid primary</p>
+        <p>✿ no CSS libraries</p>
+      </div>
+    </aside>
+
+    <footer class="footer">
+      <div class="footer-inner">about · made with ♡</div>
+    </footer>
+
+  </div>
 </body>
 </html>
+

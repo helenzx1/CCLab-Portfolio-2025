@@ -2,38 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lost & Found– My Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-  
-  <!-- p5.js libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Face Generator · Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <main>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="extra.html">Extra</a></li>
-    </ul>
-  </nav>
 
-  <h1>Lost & Found</h1>
+<body class="bg-bows">
+  <div class="frame">
 
-  <h2>p5.js Sketch</h2>
- 
-     <!-- Canvas will appear here -->
-    <div id="sketch-container"></div>
+    <!-- Header -->
+    <header class="banner">
+      <div class="pixel-title">FACE GENERATOR</div>
+      <div class="banner-sub">Project 2 · p5.js sketch</div>
+    </header>
 
-  <h2>Description</h2>
-  <p>
-This project depicts a peaceful evening scene outside a black wooden teahouse, with flowing water, bamboo, mountains, and lantern light rendered through p5.js. 
-I explored how color, transparency, and geometric shapes can create atmosphere and convey a quiet, dreamlike mood.
-  </p>
-     </main>
+    <!-- Left Navigation -->
+    <aside class="panel nav-panel">
+      <div class="panel-title">navigation</div>
+
+      <nav class="nav-list">
+        <a class="nav-btn" href="index.html">home</a>
+        <a class="nav-btn active" href="projects.html">projects</a>
+        <a class="nav-btn" href="about.html">about</a>
+        <a class="nav-btn" href="extra.html">extra</a>
+      </nav>
+
+      <!-- 可选：缩略图（如果你有 project2.jpg） -->
+      <div class="subpanel">
+        <div class="subpanel-title">thumbnail</div>
+        <img class="thumb" src="project2.jpg" alt="Face Generator thumbnail" />
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="panel main-panel">
+      <div class="panel-title">project</div>
+
+      <section class="subpanel">
+        <div class="subpanel-title">sketch</div>
+        <div id="sketch-container"></div>
+      </section>
+
+      <section class="subpanel">
+        <div class="subpanel-title">description</div>
+        <div class="scrollbox">
+          <p>
+            Project 2 explores the creation of visual variations through systematic changes
+            in form, layering, and color transparency. The study highlights how subtle
+            modifications can produce distinct and readable character designs.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-inner">project 2 · ♡</div>
+    </footer>
+
+  </div>
+
+  <!-- p5.js libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/addons/p5.sound.min.js"></script>
+
   <!-- Your p5 sketch file -->
-  <script src="project1.js"></script>
+  <script src="project2.js"></script>
 </body>
 </html>
+

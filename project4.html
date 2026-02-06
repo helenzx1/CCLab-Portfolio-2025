@@ -2,39 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Exquisite Corpse – My Portfolio</title>
-   <link rel="stylesheet" href="style.css" />
-  
-  <!-- p5.js libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Optical Illusion · Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-  
-<body>
-  <main>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="extra.html">Extra</a></li>
-    </ul>
-  </nav>
 
-  <h1>Exquisite Corpse</h1>
+<body class="bg-bows">
+  <div class="frame">
 
-  <h2>p5.js Sketch</h2>
-   <!-- Canvas will appear here -->
+    <!-- Header -->
+    <header class="banner">
+      <div class="pixel-title">OPTICAL ILLUSION</div>
+      <div class="banner-sub">Project 4 · p5.js sketch</div>
+    </header>
 
-    <div id="sketch-container"></div>
+    <!-- Left Navigation -->
+    <aside class="panel nav-panel">
+      <div class="panel-title">navigation</div>
 
-  <h2>Description</h2>
-  <p>
-During the process, I realized how important it was to keep the trash elements and the whole scene visually consistent and connected. 
-    I had to think about how each piece fit into the environment, including its shape, color, and placement, so the scene felt cohesive rather than scattered. 
-    This made me pay more attention to the overall atmosphere and how every element contributes to the final composition.
-  </p>
-    <main>
-        <!-- Your p5 sketch file -->
-  <script src="project4.js"></script>
+      <nav class="nav-list">
+        <a class="nav-btn" href="index.html">home</a>
+        <a class="nav-btn active" href="projects.html">projects</a>
+        <a class="nav-btn" href="about.html">about</a>
+        <a class="nav-btn" href="extra.html">extra</a>
+      </nav>
+
+      <!-- Optional thumbnail -->
+      <div class="subpanel">
+        <div class="subpanel-title">thumbnail</div>
+        <img class="thumb" src="project4.jpg" alt="Optical Illusion thumbnail" />
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="panel main-panel">
+      <div class="panel-title">project</div>
+
+      <!-- Sketch -->
+      <section class="subpanel">
+        <div class="subpanel-title">p5.js sketch</div>
+        <div id="sketch-container"></div>
+      </section>
+
+      <!-- Description -->
+      <section class="subpanel">
+        <div class="subpanel-title">description</div>
+        <div class="scrollbox">
+          <p>
+            In this project, I experimented with glitch effects, flicker timing,
+            and the movement of a small ghost character to explore how simple
+            procedural animation can create a specific mood and atmosphere.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-inner">project 4 · ♡</div>
+    </footer>
+
+  </div>
+
+  <!-- p5.js libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/addons/p5.sound.min.js"></script>
+
+  <!-- Your p5 sketch file -->
+  <script src="project5.js"></script>
 </body>
 </html>

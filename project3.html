@@ -2,36 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Experimental Clock – My Portfolio</title>
-   <link rel="stylesheet" href="style.css" />
-  
-  <!-- p5.js libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experimental Clock · Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <main>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="extra.html">Extra</a></li>
-    </ul>
-  </nav>
 
-  <h1>Experimental Clock</h1>
+<body class="bg-bows">
+  <div class="frame">
 
-  <h2>p5.js Sketch</h2>  
-    <!-- Canvas will appear here -->
+    <!-- Header -->
+    <header class="banner">
+      <div class="pixel-title">EXPERIMENTAL CLOCK</div>
+      <div class="banner-sub">Project 3 · p5.js sketch</div>
+    </header>
 
-    <div id="sketch-container"></div>
-  <h2>Description</h2>
-  <p>
-    In this project, I created an animated day-night scene with shifting sky colors, a moving sun and moon, twinkling stars, and a dynamic ocean.
-  Working on it made me realize how tricky smooth color transitions and timing can be, and I learned how much subtle adjustment is needed to make the whole scene feel natural.
-  </p>
-    <main>
-      
+    <!-- Left Navigation -->
+    <aside class="panel nav-panel">
+      <div class="panel-title">navigation</div>
+
+      <nav class="nav-list">
+        <a class="nav-btn" href="index.html">home</a>
+        <a class="nav-btn active" href="projects.html">projects</a>
+        <a class="nav-btn" href="about.html">about</a>
+        <a class="nav-btn" href="extra.html">extra</a>
+      </nav>
+
+      <!-- Optional thumbnail (only if you have project3.jpg) -->
+      <div class="subpanel">
+        <div class="subpanel-title">thumbnail</div>
+        <img class="thumb" src="project3.jpg" alt="Experimental Clock thumbnail" />
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="panel main-panel">
+      <div class="panel-title">project</div>
+
+      <section class="subpanel">
+        <div class="subpanel-title">p5.js sketch</div>
+        <div id="sketch-container"></div>
+      </section>
+
+      <section class="subpanel">
+        <div class="subpanel-title">description</div>
+        <div class="scrollbox">
+          <p>
+            In this project, I created an animated day-night scene with shifting sky colors,
+            a moving sun and moon, twinkling stars, and a dynamic ocean.
+          </p>
+          <p>
+            Working on it made me realize how tricky smooth color transitions and timing can be,
+            and I learned how much subtle adjustment is needed to make the whole scene feel natural.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-inner">project 3 · ♡</div>
+    </footer>
+
+  </div>
+
+  <!-- p5.js libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/addons/p5.sound.min.js"></script>
+
   <!-- Your p5 sketch file -->
   <script src="project3.js"></script>
 </body>

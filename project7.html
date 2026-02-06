@@ -2,36 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Autobiographical Game – My Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autobiographical Game · Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-bows">
+  <div class="frame">
+
+    <!-- Header -->
+    <header class="banner">
+      <div class="pixel-title">AUTOBIOGRAPHICAL GAME</div>
+      <div class="banner-sub">Project 7 · p5.js game</div>
+    </header>
+
+    <!-- Left Navigation -->
+    <aside class="panel nav-panel">
+      <div class="panel-title">navigation</div>
+
+      <nav class="nav-list">
+        <a class="nav-btn" href="index.html">home</a>
+        <a class="nav-btn active" href="projects.html">projects</a>
+        <a class="nav-btn" href="about.html">about</a>
+        <a class="nav-btn" href="extra.html">extra</a>
+      </nav>
+
+      <!-- Optional thumbnail -->
+      <div class="subpanel">
+        <div class="subpanel-title">thumbnail</div>
+        <img class="thumb" src="project7.jpg" alt="Autobiographical Game thumbnail" />
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="panel main-panel">
+      <div class="panel-title">project</div>
+
+      <!-- Sketch / Game Panel -->
+      <section class="subpanel">
+        <div class="subpanel-title">p5.js game</div>
+        <div id="sketch-container"></div>
+      </section>
+
+      <!-- Description Panel -->
+      <section class="subpanel">
+        <div class="subpanel-title">description</div>
+        <div class="scrollbox">
+          <p>
+            I created a small game about backing up the core data of the Earth within
+            15 seconds, using James’ personality of remaining calm no matter how big
+            the crisis is and always having a “Plan B” to reflect my own way of handling
+            stressful situations.
+          </p>
+          <p>
+            During the production process, I learned the importance of optimizing image
+            file sizes and managing assets carefully to ensure smooth performance.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-inner">project 7 · ♡</div>
+    </footer>
+
+  </div>
 
   <!-- p5.js libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
-</head>
-<body>
-  <main>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="extra.html">Extra</a></li>
-    </ul>
-  </nav>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/addons/p5.sound.min.js"></script>
 
-  <h1>Autobiographical Game</h1>
-
-  <h2>p5.js Sketch</h2>
-   <!-- Canvas will appear here -->
-
-    <div id="sketch-container"></div>
-    
-  <h2>Description</h2>
-  <p>I made a small game of backing up the core data of the Earth within 15 seconds, using James' personality of "remaining calm no matter how big the crisis is and always having a Plan B" to reflect my own way of handling things. 
-    During the production process, I learned that when uploading pictures, one needs to pay attention to their size.
-  </p>
-    <main>
-      <!-- Your p5 sketch file -->
+  <!-- Your p5 sketch file -->
   <script src="project7.js"></script>
 </body>
 </html>

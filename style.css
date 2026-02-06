@@ -1,186 +1,268 @@
-/* =========================
-   Y2K Webcore Pink/Black — Original Theme
-   Fonts: Poppins (titles) + Quicksand (body)
-========================= */
+/* =========================================================
+   Pink Webcore / Lace Window Theme (Original)
+   PLAN A: Pure CSS Bow Background + Google Font in CSS
+   Works with: index / projects / about / extra / project1-7
+========================================================= */
 
+/* ---- Font (no download) ---- */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Poppins:wght@600;800&display=swap");
+
+/* ---- Tokens ---- */
 :root{
-  --pink:#ff64b7;
-  --pink2:#ff9bd5;
-  --pink3:#ffd2ea;
-  --ink:#2a2130;
-  --ink2:#4a3a57;
+  --pink: #ff5fa8;
+  --pink2:#ff8ec7;
+  --pink3:#ffd0e8;
+  --pink4:#fff0f8;
+
+  --ink:#5a4a55;
+  --ink2:#6a5a65;
+
   --white: rgba(255,255,255,.92);
-  --glass: rgba(255,255,255,.72);
-  --line: rgba(255,100,183,.55);
-  --line2: rgba(255,100,183,.32);
+  --glass: rgba(255,255,255,.78);
+
+  --line: rgba(255,95,168,.55);
+  --line2: rgba(255,95,168,.28);
+
   --shadow: 0 18px 40px rgba(0,0,0,.10);
-  --radiusXL: 26px;
-  --radiusLG: 20px;
-  --radiusMD: 16px;
+
+  --r-xl: 26px;
+  --r-lg: 20px;
+  --r-md: 16px;
 }
 
+/* ---- Base Reset ---- */
 *{ box-sizing:border-box; }
-html,body{ height:100%; }
-img{ max-width:100%; display:block; }
-a{ color:inherit; text-decoration:none; }
-
-body.bg-bows{
+html, body{ height:100%; }
+body{
   margin:0;
-  font-family:"Quicksand", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  font-family: "Quicksand", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
   color: var(--ink);
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
 
-  /* Pink base + subtle grid */
-  background:
-    radial-gradient(circle at 20% 15%, #fff 0%, #ffe8f5 25%, #ffe0f1 55%, #fff 100%),
-    linear-gradient(90deg, rgba(255,100,183,.12) 1px, transparent 1px),
-    linear-gradient(rgba(255,100,183,.12) 1px, transparent 1px);
-  background-size: cover, 56px 56px, 56px 56px;
+/* =========================================================
+   PLAN A: Pure CSS Bow Background (No image)
+   + soft lace/halo feeling
+========================================================= */
+body.bg-bows{
   padding: 28px;
+
+  background:
+    /* soft base */
+    radial-gradient(circle at 20% 15%, #fff 0%, #ffe8f5 25%, #ffe0f1 55%, #fff 100%),
+
+    /* subtle lace haze */
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.85) 0 40%, transparent 60%),
+
+    /* bow knot */
+    radial-gradient(circle at 28px 28px, rgba(255,95,168,.30) 0 4px, transparent 5px),
+
+    /* bow loops */
+    radial-gradient(closest-side at 18px 28px, rgba(255,95,168,.20) 0 10px, transparent 11px),
+    radial-gradient(closest-side at 38px 28px, rgba(255,95,168,.20) 0 10px, transparent 11px),
+
+    /* bow tails */
+    linear-gradient(135deg, transparent 0 46%, rgba(255,95,168,.16) 46% 54%, transparent 54% 100%),
+    linear-gradient(225deg, transparent 0 46%, rgba(255,95,168,.16) 46% 54%, transparent 54% 100%),
+
+    /* faint grid */
+    linear-gradient(90deg, rgba(255,95,168,.10) 1px, transparent 1px),
+    linear-gradient(rgba(255,95,168,.10) 1px, transparent 1px);
+
+  background-size:
+    cover,
+    cover,
+    56px 56px,
+    56px 56px,
+    56px 56px,
+    56px 56px,
+    56px 56px,
+    72px 72px,
+    72px 72px;
+
+  background-repeat: repeat;
 }
 
-/* ====== Big frame with “lace” feeling ====== */
+/* =========================================================
+   Outer Frame (like a cute webpage window)
+========================================================= */
 .frame{
   max-width: 1120px;
   margin: 0 auto;
 
-  display:grid;
-  grid-template-columns: 320px 1fr;
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    "banner banner"
-    "left   main"
-    "footer footer";
-  gap: 18px;
+  background: rgba(255,255,255,.55);
+  backdrop-filter: blur(10px);
+
+  border-radius: var(--r-xl);
+  border: 4px solid var(--line);
+  box-shadow: var(--shadow);
 
   padding: 18px;
-  border-radius: var(--radiusXL);
-  background: rgba(255,255,255,.35);
-  border: 3px solid var(--line);
-  box-shadow: var(--shadow);
   position: relative;
 }
 
-/* inner lace-ish dashed line */
+/* inner dashed lace line */
 .frame::before{
   content:"";
   position:absolute;
   inset: 10px;
-  border-radius: calc(var(--radiusXL) - 10px);
-  border: 2px dashed rgba(0,0,0,.16);
+  border-radius: calc(var(--r-xl) - 10px);
+  border: 2px dashed rgba(0,0,0,.14);
   pointer-events:none;
 }
 
-/* small bows decoration corners */
+/* tiny top bow decoration (pure css) */
 .frame::after{
   content:"";
   position:absolute;
-  top:-10px; left: 26px;
-  width: 120px; height: 36px;
+  top:-12px;
+  left: 30px;
+  width: 120px;
+  height: 38px;
   background:
-    radial-gradient(circle at 20% 50%, var(--pink2) 0 10px, transparent 11px),
-    radial-gradient(circle at 80% 50%, var(--pink2) 0 10px, transparent 11px),
-    linear-gradient(var(--pink2), var(--pink2));
-  background-size: 24px 24px, 24px 24px, 50px 10px;
-  background-position: 0 6px, 96px 6px, 35px 13px;
+    radial-gradient(circle at 18px 20px, rgba(255,95,168,.45) 0 10px, transparent 11px),
+    radial-gradient(circle at 102px 20px, rgba(255,95,168,.45) 0 10px, transparent 11px),
+    radial-gradient(circle at 60px 20px, rgba(255,255,255,.95) 0 6px, transparent 7px),
+    linear-gradient(rgba(255,95,168,.45), rgba(255,95,168,.45));
+  background-size: auto, auto, auto, 46px 10px;
+  background-position: 0 0, 0 0, 0 0, 37px 24px;
   background-repeat:no-repeat;
-  filter: drop-shadow(0 6px 10px rgba(0,0,0,.12));
-  opacity:.9;
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,.12));
+  opacity: .95;
+  pointer-events:none;
 }
 
-/* ====== Banner (MySpace header vibe) ====== */
+/* =========================================================
+   Banner
+========================================================= */
 .banner{
-  grid-area: banner;
-  border-radius: var(--radiusXL);
-  border: 2px solid var(--line2);
+  border-radius: var(--r-xl);
+  border: 3px solid var(--line2);
   background:
-    linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.06)),
-    radial-gradient(circle at 25% 30%, rgba(255,255,255,.92) 0, rgba(255,255,255,.72) 50%, rgba(255,255,255,.85) 100%),
-    radial-gradient(circle at 20px 20px, rgba(0,0,0,.18) 0 3px, transparent 4px);
-  background-size: cover, cover, 22px 22px;
-  box-shadow: 0 14px 28px rgba(0,0,0,.10);
+    /* cute soft gradient */
+    linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,240,248,.92)),
+    /* faint dots like the ref vibe */
+    radial-gradient(circle at 12px 12px, rgba(0,0,0,.10) 0 2px, transparent 2.4px);
+  background-size: cover, 20px 20px;
+
   padding: 22px 22px 18px;
+  box-shadow: 0 14px 28px rgba(0,0,0,.10);
   position: relative;
-  overflow:hidden;
+  overflow: hidden;
 }
 
-/* lace strip */
-.banner .lace{
+/* lace strip on top */
+.banner::before{
+  content:"";
   position:absolute;
   left: 0; right:0; top:0;
   height: 22px;
   background:
-    radial-gradient(circle at 10px 12px, rgba(255,255,255,.9) 0 7px, transparent 8px),
-    radial-gradient(circle at 32px 12px, rgba(255,255,255,.9) 0 7px, transparent 8px);
-  background-size: 44px 22px;
-  opacity: .9;
+    radial-gradient(circle at 12px 14px, rgba(255,255,255,.95) 0 7px, transparent 8px),
+    radial-gradient(circle at 36px 14px, rgba(255,255,255,.95) 0 7px, transparent 8px);
+  background-size: 48px 22px;
+  opacity: .95;
 }
 
-.pixel-title{
-  font-family:"Poppins", system-ui, sans-serif;
+.site-name{
+  margin: 0;
+  font-family: "Poppins", system-ui, sans-serif;
   font-weight: 800;
-  letter-spacing: .08em;
+  letter-spacing: .16em;
   color: var(--pink);
-  font-size: 46px;
-  text-shadow:
-    2px 2px 0 rgba(255,255,255,.9),
-    0 10px 24px rgba(0,0,0,.12);
+  font-size: 44px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 rgba(255,255,255,.95);
 }
 
 .banner-sub{
   margin-top: 8px;
-  font-weight: 800;
   color: rgba(0,0,0,.55);
+  font-weight: 700;
+  letter-spacing: .04em;
 }
 
-/* ====== Left column panels ====== */
-.left{
-  grid-area: left;
-  display:grid;
-  gap: 16px;
+/* =========================================================
+   Layout (Grid)
+========================================================= */
+.layout{
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 18px;
+  margin-top: 18px;
 }
 
+/* =========================================================
+   Panels (cute windows)
+========================================================= */
 .panel{
   background: var(--glass);
-  border: 2px solid var(--line2);
-  border-radius: var(--radiusXL);
+  border-radius: var(--r-xl);
+  border: 3px solid var(--line2);
+  box-shadow: 0 14px 26px rgba(0,0,0,.08);
   padding: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 12px 22px rgba(0,0,0,.08);
+  position: relative;
 }
 
-.pill-title{
+/* inner “window” line */
+.panel::before{
+  content:"";
+  position:absolute;
+  inset: 10px;
+  border-radius: calc(var(--r-xl) - 10px);
+  border: 2px solid rgba(255,95,168,.18);
+  pointer-events:none;
+}
+
+/* panel title pill */
+.panel-title{
   display:inline-block;
-  padding: 8px 12px;
+  padding: 7px 14px;
   border-radius: 999px;
-  border: 2px solid var(--line2);
-  background: rgba(255,255,255,.82);
-  font-family:"Poppins", system-ui, sans-serif;
+  background: rgba(255,240,248,.95);
+  border: 2px solid rgba(255,95,168,.28);
+
+  font-family: "Poppins", system-ui, sans-serif;
   font-weight: 800;
-  letter-spacing: .06em;
+  letter-spacing: .08em;
   color: var(--pink);
-  margin-bottom: 12px;
+
+  text-transform: capitalize;
+  margin-bottom: 14px;
 }
 
-/* ====== Navigation buttons (bubble) ====== */
-.nav-list{ display:grid; gap: 12px; }
+/* =========================================================
+   Navigation buttons (soft bubble)
+========================================================= */
+.nav-panel{
+  display:flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .nav-btn{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding: 14px 14px;
-  border-radius: 18px;
+
+  padding: 12px 14px;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,.92);
   border: 2px solid rgba(0,0,0,.10);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.72));
-  font-weight: 900;
-  color: var(--ink);
-  box-shadow: inset 0 0 0 2px rgba(255,100,183,.18);
-  transition: transform .15s ease, box-shadow .15s ease;
+  box-shadow: inset 0 0 0 2px rgba(255,95,168,.10);
+
+  font-weight: 800;
+  text-transform: capitalize;
+  text-decoration: none;
+
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
 }
 
 .nav-btn::after{
   content:"♡";
-  color: rgba(255,100,183,.85);
+  color: rgba(255,95,168,.9);
   font-weight: 900;
   margin-left: 10px;
 }
@@ -188,81 +270,57 @@ body.bg-bows{
 .nav-btn:hover{
   transform: translateY(-2px);
   box-shadow:
-    inset 0 0 0 2px rgba(255,100,183,.25),
-    0 16px 22px rgba(0,0,0,.10);
+    inset 0 0 0 2px rgba(255,95,168,.16),
+    0 16px 24px rgba(0,0,0,.10);
 }
 
 .nav-btn.active{
+  background: rgba(255,214,234,.92);
+  color: var(--pink);
   box-shadow:
-    inset 0 0 0 2px rgba(255,100,183,.40),
-    0 16px 22px rgba(0,0,0,.10);
-  border-color: rgba(255,100,183,.28);
+    inset 0 0 0 2px rgba(255,95,168,.22),
+    0 16px 24px rgba(0,0,0,.10);
 }
 
-/* ====== Stats / small boxes ====== */
-.kv{
-  display:grid;
-  gap: 10px;
-  font-weight: 800;
-  color: rgba(0,0,0,.62);
-}
-.kv span b{ color: var(--ink); }
-
-/* ====== Main column ====== */
-.main{
-  grid-area: main;
-  display:grid;
-  gap: 16px;
-}
-
-.subpanel{
-  background: rgba(255,255,255,.86);
+/* =========================================================
+   Main Content Box
+========================================================= */
+.main-panel .content-box{
+  background: rgba(255,255,255,.92);
   border: 2px solid rgba(0,0,0,.10);
-  border-radius: var(--radiusXL);
-  padding: 16px;
-  box-shadow: 0 14px 24px rgba(0,0,0,.08);
+  border-radius: var(--r-lg);
+  padding: 18px 20px;
+  line-height: 1.75;
   position: relative;
   overflow:hidden;
 }
 
-/* subtle polka overlay like the reference vibe */
-.subpanel.polka::before{
+/* faint polka overlay (like reference mood) */
+.main-panel .content-box::before{
   content:"";
   position:absolute;
   inset:0;
-  background:
-    radial-gradient(circle at 12px 12px, rgba(0,0,0,.12) 0 2.2px, transparent 2.6px);
-  background-size: 22px 22px;
-  opacity: .35;
+  background: radial-gradient(circle at 12px 12px, rgba(0,0,0,.10) 0 2px, transparent 2.4px);
+  background-size: 20px 20px;
+  opacity: .18;
   pointer-events:none;
 }
 
-.sub-title{
-  display:inline-block;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 2px solid rgba(255,100,183,.30);
-  background: rgba(255,240,250,.92);
-  font-family:"Poppins", system-ui, sans-serif;
-  font-weight: 800;
-  letter-spacing:.06em;
-  color: var(--pink);
-  margin-bottom: 12px;
-}
-
-p{
-  margin: 10px 0 0;
-  color: rgba(0,0,0,.72);
+.main-panel p{
+  margin: 0 0 10px;
+  color: rgba(0,0,0,.70);
   font-weight: 700;
-  line-height: 1.7;
+  position: relative;
+  z-index: 1;
 }
 
-/* Links */
+/* links */
 .links{
-  margin-top: 12px;
   display:flex;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 .links a{
   color: var(--pink);
@@ -271,7 +329,9 @@ p{
   text-underline-offset: 4px;
 }
 
-/* projects grid */
+/* =========================================================
+   Projects Grid (projects.html page)
+========================================================= */
 .projects-grid{
   display:grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -279,27 +339,30 @@ p{
 }
 
 .project-card{
-  border-radius: 18px;
-  border: 2px solid rgba(0,0,0,.10);
   background: rgba(255,255,255,.92);
+  border: 2px solid rgba(0,0,0,.10);
+  border-radius: 18px;
   padding: 12px;
+
+  box-shadow: inset 0 0 0 2px rgba(255,95,168,.10);
   transition: transform .15s ease, box-shadow .15s ease;
-  box-shadow: inset 0 0 0 2px rgba(255,100,183,.10);
 }
 
 .project-card:hover{
   transform: translateY(-3px);
   box-shadow:
-    inset 0 0 0 2px rgba(255,100,183,.18),
+    inset 0 0 0 2px rgba(255,95,168,.18),
     0 18px 26px rgba(0,0,0,.10);
 }
 
-.thumb{
-  width:100%;
+.thumb,
+.project-thumb-large,
+.project-thumb{
+  width: 100%;
   height: 140px;
   object-fit: cover;
   border-radius: 14px;
-  border: 2px solid rgba(255,100,183,.22);
+  border: 2px solid rgba(255,95,168,.22);
   background: rgba(255,255,255,.95);
 }
 
@@ -307,16 +370,33 @@ p{
   margin-top: 10px;
   font-weight: 900;
   color: rgba(0,0,0,.72);
+  text-transform: capitalize;
 }
 
+/* =========================================================
+   p5 container (project pages)
+========================================================= */
 #sketch-container{
   display:grid;
   place-items:center;
   width: 100%;
-  padding: 10px;
+  padding: 12px;
+  background: rgba(255,255,255,.92);
+  border: 2px solid rgba(0,0,0,.10);
+  border-radius: var(--r-lg);
+  box-shadow: inset 0 0 0 2px rgba(255,95,168,.10);
 }
 
-/* About layout */
+/* make p5 canvas look centered and cute */
+#sketch-container canvas{
+  border-radius: 14px;
+  border: 2px solid rgba(255,95,168,.22);
+  box-shadow: 0 18px 28px rgba(0,0,0,.10);
+}
+
+/* =========================================================
+   About layout (about.html)
+========================================================= */
 .about-grid{
   display:grid;
   grid-template-columns: 1fr 280px;
@@ -331,29 +411,53 @@ p{
   box-shadow: 0 18px 28px rgba(0,0,0,.10);
 }
 
-/* Footer */
-.footer{
-  grid-area: footer;
-  border-radius: var(--radiusXL);
-  border: 2px solid var(--line2);
-  background: rgba(255,255,255,.82);
-  padding: 14px 18px;
-  text-align:center;
-  font-weight: 900;
-  color: rgba(0,0,0,.55);
+/* headings in pages (project pages, about, etc.) */
+h1, h2{
+  font-family: "Poppins", system-ui, sans-serif;
+  color: rgba(0,0,0,.70);
+  text-transform: capitalize;
+}
+h1{
+  margin: 6px 0 10px;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+h2{
+  margin: 16px 0 10px;
+  font-weight: 800;
 }
 
-/* Responsive */
+/* lists */
+ul{
+  padding-left: 18px;
+}
+li{
+  margin: 6px 0;
+}
+
+/* =========================================================
+   Footer
+========================================================= */
+.footer{
+  margin-top: 18px;
+  padding: 14px 18px;
+  text-align: center;
+
+  border-radius: var(--r-xl);
+  border: 3px solid var(--line2);
+  background: rgba(255,240,248,.92);
+
+  font-weight: 900;
+  color: rgba(0,0,0,.55);
+  letter-spacing: .05em;
+}
+
+/* =========================================================
+   Responsive
+========================================================= */
 @media (max-width: 920px){
   body.bg-bows{ padding: 16px; }
-  .frame{
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "banner"
-      "left"
-      "main"
-      "footer";
-  }
+  .layout{ grid-template-columns: 1fr; }
   .about-grid{ grid-template-columns: 1fr; }
 }
 

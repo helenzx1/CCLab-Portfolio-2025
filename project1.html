@@ -1,55 +1,54 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Face Generator · Portfolio</title>
+  <title>Lost & Found · Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="bg-bows">
   <div class="frame">
 
-    <!-- Header -->
+    <!-- Header（和 about 一样） -->
     <header class="banner">
-      <div class="pixel-title">FACE GENERATOR</div>
-      <div class="banner-sub">Project 2 · p5.js sketch</div>
+      <div class="pixel-title">LOST & FOUND</div>
+      <div class="banner-sub">Project · p5.js</div>
     </header>
 
-    <!-- Left Navigation -->
+    <!-- 左侧导航（和 about 一样） -->
     <aside class="panel nav-panel">
       <div class="panel-title">navigation</div>
-
       <nav class="nav-list">
         <a class="nav-btn" href="index.html">home</a>
         <a class="nav-btn active" href="projects.html">projects</a>
         <a class="nav-btn" href="about.html">about</a>
         <a class="nav-btn" href="extra.html">extra</a>
       </nav>
-
-      <!-- 可选：缩略图（如果你有 project2.jpg） -->
-      <div class="subpanel">
-        <div class="subpanel-title">thumbnail</div>
-        <img class="thumb" src="project2.jpg" alt="Face Generator thumbnail" />
-      </div>
     </aside>
 
-    <!-- Main Content -->
+    <!-- 主内容区（粉色面板） -->
     <main class="panel main-panel">
       <div class="panel-title">project</div>
 
+      <!-- sketch 面板 -->
       <section class="subpanel">
-        <div class="subpanel-title">sketch</div>
+        <div class="subpanel-title">p5.js sketch</div>
         <div id="sketch-container"></div>
       </section>
 
+      <!-- description 面板 -->
       <section class="subpanel">
         <div class="subpanel-title">description</div>
         <div class="scrollbox">
           <p>
-            Project 2 explores the creation of visual variations through systematic changes
-            in form, layering, and color transparency. The study highlights how subtle
-            modifications can produce distinct and readable character designs.
+            This project depicts a peaceful evening scene outside a black wooden teahouse,
+            with flowing water, bamboo, mountains, and lantern light rendered through p5.js.
+          </p>
+          <p>
+            I explored how color, transparency, and geometric shapes can create atmosphere
+            and convey a quiet, dreamlike mood.
           </p>
         </div>
       </section>
@@ -57,17 +56,15 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="footer-inner">project 2 · ♡</div>
+      <div class="footer-inner">project · lost & found ♡</div>
     </footer>
 
   </div>
 
-  <!-- p5.js libraries -->
+  <!-- p5 libraries -->
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/addons/p5.sound.min.js"></script>
-
-  <!-- Your p5 sketch file -->
-  <script src="project2.js"></script>
+  <script src="project1.js"></script>
 </body>
 </html>
 

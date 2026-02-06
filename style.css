@@ -1,229 +1,293 @@
-/* =========================
-   PINK WEBCORE THEME (2-column)
-   - Primary layout: CSS Grid
-   - No CSS libraries
-========================= */
+/* ============== Fonts (used via Google Fonts in HTML) ============== */
+/* Title: Poppins | Body: Quicksand */
 
+/* ============== Reset ============== */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
 
+/* ============== Theme ============== */
 :root{
-  --pink-1:#ffe6f3;
-  --pink-2:#ffd1ea;
-  --ink:#5a4060;
-
-  --panel:#ffffff;
-  --border:#ff78c6;
-  --border-soft:#ffc0e6;
-
-  --shadow: 0 10px 22px rgba(255, 120, 198, 0.14);
-  --r: 18px;
+  --pink-1:#fff3fb;
+  --pink-2:#ffd7ee;
+  --pink-3:#ff97cb;
+  --pink-4:#ff5fb4;
+  --ink:#4a3b57;
+  --ink-soft:#6a5a74;
+  --white: rgba(255,255,255,.88);
+  --glass: rgba(255,255,255,.68);
+  --shadow: 0 12px 26px rgba(255, 95, 180, .12);
+  --border: 3px solid rgba(255, 95, 180, .55);
+  --border-soft: 2px solid rgba(255, 95, 180, .38);
+  --radius-xl: 26px;
+  --radius-lg: 20px;
+  --radius-md: 16px;
 }
 
-/* background */
+/* Background pattern (bows-ish) */
 body.bg-bows{
   margin: 0;
-  font-family: system-ui, -apple-system, "Noto Sans", Arial, sans-serif;
   color: var(--ink);
+  font-family: "Quicksand", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%23fff6fb'/%3E%3Crect x='6' y='6' width='108' height='108' rx='10' fill='none' stroke='%23ffd1ea' stroke-width='2'/%3E%3Cg transform='translate(60 60)'%3E%3Cpath d='M0-10 C-18-24 -34-12 -22 4 C-15 14 -6 12 0 6 Z' fill='%23ffbde2' stroke='%23ff78c6' stroke-width='2'/%3E%3Cpath d='M0-10 C18-24 34-12 22 4 C15 14 6 12 0 6 Z' fill='%23ffbde2' stroke='%23ff78c6' stroke-width='2'/%3E%3Ccircle cx='0' cy='0' r='6' fill='%23ff9fd3' stroke='%23ff78c6' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 120px 120px;
+    radial-gradient(circle at 20% 15%, #fff0f8 0%, #ffe4f2 28%, #fff6fc 70%, #fff 100%),
+    linear-gradient(90deg, rgba(255,95,180,.08) 1px, transparent 1px),
+    linear-gradient(rgba(255,95,180,.08) 1px, transparent 1px);
+  background-size: cover, 56px 56px, 56px 56px;
+  background-position: center, 0 0, 0 0;
+  padding: 34px;
 }
 
-/* frame layout (GRID) */
+/* ============== Layout Grid ============== */
 .frame{
-  width: min(1100px, 96vw);
-  margin: 24px auto;
+  max-width: 1080px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 280px 1fr;
   grid-template-rows: auto 1fr auto;
-  gap: 14px;
-  padding: 14px;
+  grid-template-areas:
+    "banner banner"
+    "nav    main"
+    "footer footer";
+  gap: 18px;
 
-  border: 3px solid var(--border);
-  border-radius: 22px;
-  background: #fff;
+  padding: 18px;
+  border: var(--border);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, .35);
   box-shadow: var(--shadow);
+  position: relative;
 }
 
-/* header */
+/* inner outline (cute frame) */
+.frame::before{
+  content:"";
+  position:absolute;
+  inset: 10px;
+  border-radius: calc(var(--radius-xl) - 10px);
+  border: 2px solid rgba(255, 95, 180, .25);
+  pointer-events: none;
+}
+
+/* ============== Banner ============== */
 .banner{
-  grid-column: 1 / -1;
-  border: 3px solid var(--border);
-  border-radius: 18px;
-  padding: 18px 20px;
-  background: linear-gradient(90deg, var(--pink-1), #fff);
-  box-shadow: var(--shadow);
+  grid-area: banner;
+  background: var(--white);
+  border: var(--border-soft);
+  border-radius: var(--radius-xl);
+  padding: 22px 24px;
+  box-shadow: 0 8px 18px rgba(255, 95, 180, .10);
 }
 
 .pixel-title{
-  font-size: 32px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  color: #ff4fb4;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 0 #fff, 4px 4px 0 #ffbde2;
+  font-family: "Poppins", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 44px;
+  letter-spacing: .06em;
+  color: var(--pink-4);
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, .9);
+  line-height: 1.05;
 }
 
 .banner-sub{
   margin-top: 6px;
-  color: #8a4f78;
-  font-weight: 800;
-  opacity: 0.9;
+  font-size: 16px;
+  color: var(--ink-soft);
+  font-weight: 600;
 }
 
-/* panels */
+/* ============== Panels ============== */
 .panel{
-  border: 3px solid var(--border);
-  border-radius: var(--r);
-  padding: 12px;
-  background: var(--panel);
-  box-shadow: var(--shadow);
+  background: var(--glass);
+  border: var(--border-soft);
+  border-radius: var(--radius-xl);
+  padding: 18px;
+  box-shadow: 0 10px 22px rgba(255, 95, 180, .10);
+  backdrop-filter: blur(10px);
 }
 
-.nav-panel{ grid-column: 1; }
-.main-panel{ grid-column: 2; }
+.nav-panel{ grid-area: nav; }
+.main-panel{ grid-area: main; }
 
-.footer{
-  grid-column: 1 / -1;
-  border: 3px solid var(--border);
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: var(--shadow);
-}
-.footer-inner{
-  padding: 10px 12px;
-  text-align: center;
-  font-weight: 900;
-  color: #8a4f78;
-}
-
-/* panel title pill */
 .panel-title{
   display: inline-block;
-  padding: 6px 10px;
+  padding: 8px 14px;
   border-radius: 999px;
-  border: 2px solid var(--border);
-  background: #fff;
-  color: #ff4fb4;
-  font-weight: 1000;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
+  border: 2px solid rgba(255, 95, 180, .45);
+  background: rgba(255, 255, 255, .72);
+  color: var(--pink-4);
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: none;
+  margin-bottom: 14px;
+  font-family: "Poppins", system-ui, sans-serif;
 }
 
-/* nav */
-.nav-list{ display: grid; gap: 10px; margin-top: 6px; }
+/* ============== Navigation Buttons ============== */
+.nav-list{
+  display: grid;
+  gap: 12px;
+}
+
 .nav-btn{
-  text-decoration: none;
+  display: block;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 95, 180, .35);
+  background: rgba(255, 255, 255, .78);
+  font-weight: 800;
   color: var(--ink);
-  font-weight: 1000;
-  text-transform: lowercase;
-
-  padding: 10px 12px;
-  border-radius: 999px;
-
-  border: 2px solid var(--border-soft);
-  background: linear-gradient(180deg, #ffffff, #fff1fa);
-  box-shadow: 0 10px 16px rgba(255, 120, 198, 0.10);
-  transition: transform .15s ease;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
 }
-.nav-btn:hover{ transform: translateY(-2px); }
+
+.nav-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 95, 180, .12);
+}
+
 .nav-btn.active{
-  border-color: var(--border);
-  background: linear-gradient(180deg, #fff, #ffd8ef);
-  color: #ff4fb4;
+  border-color: rgba(255, 95, 180, .65);
+  background: linear-gradient(180deg, rgba(255, 151, 203, .20), rgba(255, 255, 255, .86));
 }
 
-/* content blocks */
+/* ============== Subpanels ============== */
 .subpanel{
-  border: 2px solid var(--border-soft);
-  border-radius: 16px;
-  background: #fffafe;
-  padding: 12px;
-  box-shadow: 0 10px 18px rgba(255, 120, 198, 0.08);
-  margin-top: 12px;
+  background: rgba(255,255,255,.78);
+  border: 2px solid rgba(255, 95, 180, .30);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: 0 10px 20px rgba(255, 95, 180, .08);
 }
+
+.subpanel + .subpanel{ margin-top: 16px; }
 
 .subpanel-title{
-  font-weight: 1000;
-  color: #ff4fb4;
-  text-transform: lowercase;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 95, 180, .35);
+  background: rgba(255, 245, 252, .92);
+  color: var(--pink-4);
+  font-weight: 800;
+  letter-spacing: .05em;
+  margin-bottom: 12px;
+  font-family: "Poppins", system-ui, sans-serif;
 }
 
-.scrollbox{
-  background: #fff;
-  border: 2px solid var(--border-soft);
-  border-radius: 14px;
-  padding: 12px;
-  box-shadow: inset 0 0 0 4px #fff3fb;
-  max-height: 260px;
-  overflow: auto;
+/* ============== Text ============== */
+p{
+  margin: 10px 0 0;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 600;
 }
-.scrollbox.small{ max-height: 170px; }
 
-.muted{ opacity: 0.78; }
-
-/* projects grid cards (used on projects page too) */
-.projects-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
+.small-links{
   margin-top: 12px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
 }
-.proj-card{
-  display:grid;
-  gap: 10px;
-  text-decoration:none;
-  color: inherit;
-  padding: 10px;
-  border-radius: 16px;
-  border: 2px solid var(--border-soft);
-  background: #fff;
-  box-shadow: 0 10px 18px rgba(255, 120, 198, 0.10);
+
+.small-links a{
+  color: var(--pink-4);
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
+
+/* Scroll box (like cute window) */
+.scrollbox{
+  max-height: 180px;
+  overflow: auto;
+  padding-right: 10px;
+}
+
+/* ============== Projects Grid ============== */
+.projects-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.project-card{
+  border-radius: 18px;
+  border: 2px solid rgba(255, 95, 180, .28);
+  background: rgba(255,255,255,.85);
+  padding: 12px;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.project-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 16px 26px rgba(255, 95, 180, .12);
+}
+
 .thumb{
   width: 100%;
-  height: 120px;
+  height: 140px;
   object-fit: cover;
   border-radius: 14px;
-  border: 2px solid var(--border-soft);
-  box-shadow: inset 0 0 0 4px #fff3fb;
-}
-.proj-name{
-  font-weight: 1000;
-  text-transform: lowercase;
-  color: #8a4f78;
+  border: 2px solid rgba(255, 95, 180, .22);
+  background: rgba(255,255,255,.9);
 }
 
-/* ===== p5 sketch container (IMPORTANT) ===== */
-#sketch-container{
+.card-title{
+  margin-top: 10px;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+/* ============== About Layout ============== */
+.about-grid{
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 16px;
+  align-items: start;
+}
+
+.profile-photo{
   width: 100%;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 95, 180, .30);
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 12px 24px rgba(255, 95, 180, .12);
+}
+
+/* p5 container center */
+#sketch-container{
   display: grid;
   place-items: center;
+  width: 100%;
   padding: 10px;
-  background: #fff;
-  border: 2px solid var(--border-soft);
-  border-radius: 16px;
-  box-shadow: inset 0 0 0 4px #fff3fb;
-  overflow: hidden;
 }
 
-/* make canvas responsive-ish */
-#sketch-container canvas{
-  max-width: 100%;
-  height: auto !important;
-  border-radius: 12px;
+/* ============== Footer ============== */
+.footer{
+  grid-area: footer;
+  background: var(--white);
+  border: var(--border-soft);
+  border-radius: var(--radius-xl);
+  padding: 14px 18px;
+  text-align: center;
+  font-weight: 800;
+  color: var(--ink-soft);
 }
 
-/* responsive */
-@media (max-width: 980px){
+/* ============== Responsive ============== */
+@media (max-width: 900px){
+  body.bg-bows{ padding: 18px; }
   .frame{
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+      "banner"
+      "nav"
+      "main"
+      "footer";
   }
-  .nav-panel{ grid-column: 1; }
-  .main-panel{ grid-column: 1; }
+  .about-grid{
+    grid-template-columns: 1fr;
+  }
 }
-

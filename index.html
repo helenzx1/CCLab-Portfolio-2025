@@ -3,16 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Helen Luo</title>
+  <title>Projects</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Main CSS -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- p5.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
 </head>
 
 <body class="bg-bows">
@@ -21,20 +17,18 @@
     <!-- Header -->
     <header class="banner">
       <div class="banner-inner">
-        <div class="pixel-title">Helen Luo</div>
+        <div class="pixel-title">Projects</div>
       </div>
     </header>
 
-    <!-- Layout -->
     <div class="layout">
 
       <!-- Navigation -->
       <aside class="panel nav-panel">
         <div class="panel-title">navigation</div>
-
         <div class="nav-list">
-          <a class="nav-btn active" href="index.html">home</a>
-          <a class="nav-btn" href="projects.html">projects</a>
+          <a class="nav-btn" href="index.html">home</a>
+          <a class="nav-btn active" href="projects.html">projects</a>
           <a class="nav-btn" href="about.html">about</a>
           <a class="nav-btn" href="extra.html">extra</a>
         </div>
@@ -42,40 +36,25 @@
 
       <!-- Main -->
       <main class="panel main-panel">
-        <div class="panel-title">welcome</div>
+        <div class="panel-title">projects list</div>
 
         <div class="subpanel">
-          <div class="subpanel-title">hello</div>
+          <div class="subpanel-title">interactive typography</div>
 
-          <p>Welcome to my space.</p>
+          <!-- ✅ 直接放 p5 画布 -->
+          <div id="sketch-holder"></div>
 
-          <p>
-            This site is a collection of visual experiments,
-            interactive sketches, and small digital moments
-            I enjoy creating.
-          </p>
-
-          <p>
-            I’m interested in softness, atmosphere, and playful
-            details, and I like using code as a quiet way to
-            tell stories.
-          </p>
-
-          <div class="cta-row">
-            <a class="cute-btn" href="projects.html">View Projects</a>
-            <a class="cute-btn ghost" href="about.html">About Me</a>
-          </div>
         </div>
-
-        <!-- ✅ 可选：如果你想把 p5 放在页面里，而不是全屏 -->
-        <!-- <div id="sketch-holder"></div> -->
-
       </main>
 
     </div>
   </div>
 
-  <!-- Your p5 sketch -->
-  <script src="sketch.js"></script>
+  <!-- p5 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+
+  <!-- 你的 sketch -->
+  <script src="interactive-typography.js"></script>
+
 </body>
 </html>

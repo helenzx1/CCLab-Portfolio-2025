@@ -1,21 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Helen Luo</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- p5.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
-  <style>
-    body{
-      margin:0;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-      background:#ffe0ef;
-    }
-    canvas{ display:block; }
-  </style>
 </head>
-<body>
+
+<body class="bg-bows">
+  <div class="frame">
+
+    <!-- Header -->
+    <header class="banner">
+      <div class="banner-inner">
+        <div class="pixel-title">Helen Luo</div>
+      </div>
+    </header>
+
+    <!-- Layout -->
+    <div class="layout">
+
+      <!-- Navigation -->
+      <aside class="panel nav-panel">
+        <div class="panel-title">navigation</div>
+
+        <div class="nav-list">
+          <a class="nav-btn active" href="index.html">home</a>
+          <a class="nav-btn" href="projects.html">projects</a>
+          <a class="nav-btn" href="about.html">about</a>
+          <a class="nav-btn" href="extra.html">extra</a>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <main class="panel main-panel">
+        <div class="panel-title">welcome</div>
+
+        <div class="subpanel">
+          <div class="subpanel-title">hello</div>
+
+          <p>Welcome to my space.</p>
+
+          <p>
+            This site is a collection of visual experiments,
+            interactive sketches, and small digital moments
+            I enjoy creating.
+          </p>
+
+          <p>
+            I’m interested in softness, atmosphere, and playful
+            details, and I like using code as a quiet way to
+            tell stories.
+          </p>
+
+          <div class="cta-row">
+            <a class="cute-btn" href="projects.html">View Projects</a>
+            <a class="cute-btn ghost" href="about.html">About Me</a>
+          </div>
+        </div>
+
+        <!-- ✅ 可选：如果你想把 p5 放在页面里，而不是全屏 -->
+        <!-- <div id="sketch-holder"></div> -->
+
+      </main>
+
+    </div>
+  </div>
+
+  <!-- Your p5 sketch -->
   <script src="sketch.js"></script>
 </body>
 </html>

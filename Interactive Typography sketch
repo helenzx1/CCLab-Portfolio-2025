@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Typography - ARC / LOVE / HURT</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="wrap">
+    <header class="top">
+      <h1>Interactive Typography</h1>
+      <p>
+        Click to switch modes. Move mouse to interact in some modes.
+      </p>
+    </header>
+
+    <!-- p5 会把 canvas 放进这个容器里 -->
+    <div id="sketch-holder"></div>
+
+    <footer class="bottom">
+      <p>Made with p5.js • Hosted on GitHub Pages</p>
+    </footer>
+  </main>
+
+  <!-- p5.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.3/lib/p5.min.js"></script>
+
+  <!-- 你的 sketch -->
+  <script src="sketch.js"></script>
+</body>
+</html>

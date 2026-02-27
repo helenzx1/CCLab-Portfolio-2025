@@ -375,3 +375,13 @@ html, body { height: 100%; }
   .panel-grid-2{ grid-template-columns: 1fr; }
   .about-grid{ grid-template-columns: 1fr; }
 }
+#sketch-holder {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#sketch-holder canvas {
+  border-radius: 20px;
+}

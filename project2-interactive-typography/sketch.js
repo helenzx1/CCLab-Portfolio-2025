@@ -9,8 +9,9 @@ function preload() {
 }
 
 function setup() {
-  let canvas = createCanvas(600, 600);
-  canvas.parent("sketch-container");
+  createCanvas(600, 600);
+  textFont(grotesk);
+  colorMode(HSB, 360, 100, 100);
 
   points = grotesk.textToPoints(word, 75, 380, fontSize, {
     sampleFactor: 0.12
@@ -20,7 +21,7 @@ function setup() {
 }
 
 function draw() {
-  background(20);
+  background(240, 35, 10);
   noStroke();
 
   let cx = width / 2;
@@ -35,17 +36,13 @@ function draw() {
   for (let i = 0; i < points.length; i++) {
     let dx = points[i].x - cx;
 
-    // 越靠左右两边，往上拱得越明显
     let archAmount = map(abs(dx), 0, 260, 10, 45, true);
 
-    // 鼠标越近，反应越明显
     let dMouse = dist(mouseX, mouseY, points[i].x, points[i].y);
     let hover = map(dMouse, 0, 180, 1, 0, true);
 
-    // 左右张开的效果
     let pushX = map(abs(dx), 0, 260, 0, 20, true) * hover;
 
-    // 抖动，像你 POWER 那个写法
     let jitterX = random(-overload, overload);
     let jitterY = random(-overload, overload);
 
@@ -60,7 +57,7 @@ function draw() {
 
     let size = 5 + hover * 4 + overload * 0.1;
 
-    fill((frameCount * 2 + i) % 255, 200, 255);
-    ellipse(x, y, size);
+    fill((frameCount * 2 + i) % 360, 85, 100);
+    ellipse(x, y, size, size);
   }
 }

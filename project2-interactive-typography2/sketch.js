@@ -6,7 +6,8 @@ let overload = 0;
 let t = 0;
 
 function preload() {
-  font = loadFont("font.ttf");
+  // ✅ 这里已经帮你改成正确路径
+  font = loadFont("front.ttf");
 }
 
 function setup() {

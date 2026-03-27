@@ -8,6 +8,10 @@ let faceMesh;
 // 摄像头
 let video;
 
+// 摄像头原始尺寸
+let camW = 640;
+let camH = 480;
+
 // 存检测到的人脸结果
 let faces = [];
 
@@ -49,20 +53,27 @@ function gotFaces(results) {
 // 只运行一次，负责初始化
 // ------------------------------------
 function setup() {
-  // 创建全屏画布
-  createCanvas(windowWidth, windowHeight);
+  let canvas = createCanvas(windowWidth, windowHeight);
+
+  // 如果 html 里有 sketch-container，就把画布放进去
+  if (document.getElementById("sketch-container")) {
+    canvas.parent("sketch-container");
+  }
 
   // 创建额外图层，专门画火焰
   fireLayer = createGraphics(windowWidth, windowHeight);
 
   // 打开摄像头
-  video = createCapture(VIDEO);
+  video = createCapture(VIDEO, function () {
+    // 摄像头准备好后，记录真实宽高
+    camW = video.elt.videoWidth || 640;
+    camH = video.elt.videoHeight || 480;
 
-  // 摄像头大小和画布一样大
-  video.size(windowWidth, windowHeight);
+    // 保持摄像头原始比例，不强行拉满窗口
+    video.size(camW, camH);
+  });
 
   // 隐藏原本 HTML 的 video
-  // 因为我们要自己画到 p5 canvas 上
   video.hide();
 
   // 开始检测人脸
@@ -82,16 +93,19 @@ function setup() {
   instructionText.style("color", "#7a0026");
   instructionText.style("background", "rgba(255,255,255,0.75)");
   instructionText.style("border-radius", "10px");
+  instructionText.style("z-index", "10");
 
   // 清空火焰按钮
   clearButton = createButton("Clear Fire");
   clearButton.position(20, 55);
   clearButton.mousePressed(clearFire);
+  clearButton.style("z-index", "10");
 
   // 保存图片按钮
   saveButton = createButton("Save Photo");
   saveButton.position(110, 55);
   saveButton.mousePressed(savePhoto);
+  saveButton.style("z-index", "10");
 }
 
 
@@ -103,7 +117,7 @@ function draw() {
   // 清空背景
   background(255);
 
-  // 画镜像摄像头
+  // 画镜像摄像头（不变形版本）
   drawMirroredVideo();
 
   // 取第一张脸的点位
@@ -125,13 +139,44 @@ function draw() {
 
 // ------------------------------------
 // 6. 画镜像摄像头
-// 这样看起来更像自拍镜子
+// 不变形：保持原始宽高比
+// cover 模式：铺满屏幕但不拉伸，可能裁掉一点边缘
 // ------------------------------------
 function drawMirroredVideo() {
+  if (!video || !video.elt || !video.elt.videoWidth || !video.elt.videoHeight) {
+    return;
+  }
+
+  let vw = video.elt.videoWidth;
+  let vh = video.elt.videoHeight;
+
+  let videoRatio = vw / vh;
+  let canvasRatio = width / height;
+
+  let drawW, drawH, offsetX, offsetY;
+
+  // cover：铺满但不变形
+  if (videoRatio > canvasRatio) {
+    // 视频更宽，按高度铺满，左右裁切
+    drawH = height;
+    drawW = height * videoRatio;
+    offsetX = (width - drawW) / 2;
+    offsetY = 0;
+  } else {
+    // 视频更高，按宽度铺满，上下裁切
+    drawW = width;
+    drawH = width / videoRatio;
+    offsetX = 0;
+    offsetY = (height - drawH) / 2;
+  }
+
   push();
   translate(width, 0);
   scale(-1, 1);
-  image(video, 0, 0, width, height);
+
+  // 注意：镜像后 x 的写法不能直接用 offsetX
+  image(video, -offsetX - drawW, offsetY, drawW, drawH);
+
   pop();
 }
 
@@ -185,11 +230,10 @@ function getPoint(points, index) {
 
 // ------------------------------------
 // 9. 画恶魔角
-// 重点：这里不要再写 width - x
+// 不要再写 width - x
 // 因为你已经用了 flipped:true
 // ------------------------------------
 function drawHorns(points) {
-  // FaceMesh 眉毛附近的点
   let leftBrow = getPoint(points, 105);
   let rightBrow = getPoint(points, 334);
 
@@ -197,8 +241,6 @@ function drawHorns(points) {
     return;
   }
 
-  // 这里直接用点位原本的 x
-  // 不要再写 width - leftBrow.x
   let x1 = leftBrow.x;
   let y1 = leftBrow.y;
 
@@ -227,16 +269,13 @@ function drawHorns(points) {
 // ------------------------------------
 // 10. 判断嘴巴是否张开
 // 只要稍微张开一点就喷火
-// 重点：嘴巴中心也不要再写 width - x
 // ------------------------------------
 function emitFireWhenMouthOpens(points) {
-  // 嘴巴相关点位
   let leftMouth = getPoint(points, 61);
   let rightMouth = getPoint(points, 291);
   let topLip = getPoint(points, 13);
   let bottomLip = getPoint(points, 14);
 
-  // 用脸高做参考，让判断更稳
   let topFace = getPoint(points, 10);
   let bottomFace = getPoint(points, 152);
 
@@ -244,16 +283,16 @@ function emitFireWhenMouthOpens(points) {
     return;
   }
 
-  // 嘴巴宽度：左右嘴角距离
+  // 嘴巴宽度
   let mouthWidth = dist(
     leftMouth.x, leftMouth.y,
     rightMouth.x, rightMouth.y
   );
 
-  // 嘴巴张开高度：上下嘴唇距离
+  // 嘴巴张开高度
   let mouthOpen = abs(bottomLip.y - topLip.y);
 
-  // 脸高：防止离摄像头远近变化太大
+  // 脸高
   let faceHeight = abs(bottomFace.y - topFace.y);
 
   // 嘴巴张开比例
@@ -264,7 +303,6 @@ function emitFireWhenMouthOpens(points) {
 
   if (mouthRatio > openThreshold) {
     // 嘴巴中心
-    // 这里也直接用原本的 x
     let centerX = (leftMouth.x + rightMouth.x) / 2;
     let centerY = (topLip.y + bottomLip.y) / 2 + 8;
 
@@ -301,7 +339,6 @@ function emitFireWhenMouthOpens(points) {
 // ------------------------------------
 function makeFireParticle(x, y, mouthWidth, mouthRatio) {
   return {
-    // 位置
     x: x,
     y: y,
 
@@ -330,11 +367,9 @@ function makeFireParticle(x, y, mouthWidth, mouthRatio) {
 // 12. 更新并绘制火焰
 // ------------------------------------
 function updateAndDrawFire() {
-  // 每一帧先清空火焰图层
   fireLayer.clear();
   fireLayer.noStroke();
 
-  // 倒着循环，删除粒子更安全
   for (let i = fire.length - 1; i >= 0; i--) {
     let p = fire[i];
 
@@ -427,7 +462,6 @@ function drawSpark(p) {
 
 // ------------------------------------
 // 15. 清空火焰
-// 点击按钮后调用
 // ------------------------------------
 function clearFire() {
   fire = [];
@@ -436,7 +470,6 @@ function clearFire() {
 
 // ------------------------------------
 // 16. 保存当前画面
-// 点击按钮后调用
 // ------------------------------------
 function savePhoto() {
   saveCanvas("face_fire_filter", "png");
@@ -445,10 +478,10 @@ function savePhoto() {
 
 // ------------------------------------
 // 17. 浏览器窗口变化时更新尺寸
-// 防止下面留白
+// 不要再 video.size(windowWidth, windowHeight)
+// 不然会再次拉伸变形
 // ------------------------------------
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   fireLayer = createGraphics(windowWidth, windowHeight);
-  video.size(windowWidth, windowHeight);
 }

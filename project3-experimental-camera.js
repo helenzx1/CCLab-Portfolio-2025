@@ -1,31 +1,20 @@
 // ------------------------------------
-// 1. 全局变量
+// Global variables
 // ------------------------------------
-
-// ml5 的 FaceMesh 模型
 let faceMesh;
-
-// 摄像头
 let video;
-
-// 存检测到的人脸结果
 let faces = [];
 
-// 火焰粒子数组
-let fire = [];
-
-// createGraphics() 做出来的额外图层
+let fireParticles = [];
 let fireLayer;
 
-// DOM 元素
 let instructionText;
 let clearButton;
 let saveButton;
 
 
 // ------------------------------------
-// 2. preload()
-// 先加载 FaceMesh 模型
+// preload()
 // ------------------------------------
 function preload() {
   faceMesh = ml5.faceMesh({
@@ -36,8 +25,7 @@ function preload() {
 
 
 // ------------------------------------
-// 3. gotFaces()
-// 每次模型检测到脸，就会把结果传进来
+// FaceMesh callback
 // ------------------------------------
 function gotFaces(results) {
   faces = results;
@@ -45,34 +33,23 @@ function gotFaces(results) {
 
 
 // ------------------------------------
-// 4. setup()
-// 只运行一次，负责初始化
+// setup()
 // ------------------------------------
 function setup() {
-  // 创建全屏画布
   createCanvas(windowWidth, windowHeight);
 
-  // 创建额外图层，专门画火焰
+  // extra graphics layer for fire
   fireLayer = createGraphics(windowWidth, windowHeight);
 
-  // 打开摄像头
+  // camera
   video = createCapture(VIDEO);
-
-  // 摄像头大小和画布一样大
   video.size(windowWidth, windowHeight);
-
-  // 隐藏原本 HTML 的 video
-  // 因为我们要自己画到 p5 canvas 上
   video.hide();
 
-  // 开始检测人脸
+  // start facemesh
   faceMesh.detectStart(video, gotFaces);
 
-  // -----------------------------
-  // DOM interaction
-  // -----------------------------
-
-  // 说明文字
+  // DOM text
   instructionText = createP("Open your mouth to breathe fire");
   instructionText.position(20, 10);
   instructionText.style("margin", "0");
@@ -83,12 +60,12 @@ function setup() {
   instructionText.style("background", "rgba(255,255,255,0.75)");
   instructionText.style("border-radius", "10px");
 
-  // 清空火焰按钮
+  // clear button
   clearButton = createButton("Clear Fire");
   clearButton.position(20, 55);
   clearButton.mousePressed(clearFire);
 
-  // 保存图片按钮
+  // save button
   saveButton = createButton("Save Photo");
   saveButton.position(110, 55);
   saveButton.mousePressed(savePhoto);
@@ -96,36 +73,28 @@ function setup() {
 
 
 // ------------------------------------
-// 5. draw()
-// 每一帧都会运行
+// draw()
 // ------------------------------------
 function draw() {
-  // 清空背景
   background(255);
 
-  // 画镜像摄像头
   drawMirroredVideo();
 
-  // 取第一张脸的点位
   let points = getFacePoints();
 
-  // 如果有检测到脸，才继续
   if (points) {
     drawHorns(points);
     emitFireWhenMouthOpens(points);
   }
 
-  // 更新并绘制火焰
   updateAndDrawFire();
 
-  // 把火焰图层贴回主画布
   image(fireLayer, 0, 0);
 }
 
 
 // ------------------------------------
-// 6. 画镜像摄像头
-// 这样看起来更像自拍镜子
+// draw mirrored video
 // ------------------------------------
 function drawMirroredVideo() {
   push();
@@ -137,8 +106,7 @@ function drawMirroredVideo() {
 
 
 // ------------------------------------
-// 7. 读取 FaceMesh 点位
-// 把结果整理成比较好用的格式
+// get face points
 // ------------------------------------
 function getFacePoints() {
   if (!faces || faces.length === 0) {
@@ -147,24 +115,28 @@ function getFacePoints() {
 
   let face = faces[0];
 
-  // ml5 常见格式：face.keypoints
+  // common ml5 facemesh format
   if (face.keypoints && face.keypoints.length > 0) {
-    return face.keypoints.map(function (pt) {
-      return {
-        x: pt.x,
-        y: pt.y
-      };
-    });
+    let converted = [];
+    for (let i = 0; i < face.keypoints.length; i++) {
+      converted.push({
+        x: face.keypoints[i].x,
+        y: face.keypoints[i].y
+      });
+    }
+    return converted;
   }
 
-  // 备用：如果返回的是数组格式
+  // fallback array format
   if (Array.isArray(face)) {
-    return face.map(function (pt) {
-      return {
-        x: pt[0],
-        y: pt[1]
-      };
-    });
+    let converted = [];
+    for (let i = 0; i < face.length; i++) {
+      converted.push({
+        x: face[i][0],
+        y: face[i][1]
+      });
+    }
+    return converted;
   }
 
   return null;
@@ -172,23 +144,25 @@ function getFacePoints() {
 
 
 // ------------------------------------
-// 8. 安全获取某一个点
+// safe point getter
 // ------------------------------------
 function getPoint(points, index) {
-  if (!points || !points[index]) {
+  if (!points) {
     return null;
   }
+
+  if (!points[index]) {
+    return null;
+  }
+
   return points[index];
 }
 
 
 // ------------------------------------
-// 9. 画恶魔角
-// 重点：这里不要再写 width - x
-// 因为你已经用了 flipped:true
+// draw devil horns
 // ------------------------------------
 function drawHorns(points) {
-  // FaceMesh 眉毛附近的点
   let leftBrow = getPoint(points, 105);
   let rightBrow = getPoint(points, 334);
 
@@ -196,25 +170,23 @@ function drawHorns(points) {
     return;
   }
 
-  // 这里直接用点位原本的 x
-  // 不要再写 width - leftBrow.x
   let x1 = leftBrow.x;
   let y1 = leftBrow.y;
 
   let x2 = rightBrow.x;
   let y2 = rightBrow.y;
 
-  fill(120, 0, 0);
   noStroke();
+  fill(120, 0, 0);
 
-  // 左边角
+  // left horn
   triangle(
     x1 - 18, y1 - 70,
     x1 + 18, y1 - 70,
     x1, y1 - 190
   );
 
-  // 右边角
+  // right horn
   triangle(
     x2 - 18, y2 - 70,
     x2 + 18, y2 - 70,
@@ -224,50 +196,43 @@ function drawHorns(points) {
 
 
 // ------------------------------------
-// 10. 判断嘴巴是否张开
-// 只要稍微张开一点就喷火
-// 重点：嘴巴中心也不要再写 width - x
+// emit fire when mouth opens
 // ------------------------------------
 function emitFireWhenMouthOpens(points) {
-  // 嘴巴相关点位
   let leftMouth = getPoint(points, 61);
   let rightMouth = getPoint(points, 291);
   let topLip = getPoint(points, 13);
   let bottomLip = getPoint(points, 14);
 
-  // 用脸高做参考，让判断更稳
   let topFace = getPoint(points, 10);
   let bottomFace = getPoint(points, 152);
 
-  if (!leftMouth || !rightMouth || !topLip || !bottomLip || !topFace || !bottomFace) {
+  if (
+    !leftMouth ||
+    !rightMouth ||
+    !topLip ||
+    !bottomLip ||
+    !topFace ||
+    !bottomFace
+  ) {
     return;
   }
 
-  // 嘴巴宽度：左右嘴角距离
   let mouthWidth = dist(
     leftMouth.x, leftMouth.y,
     rightMouth.x, rightMouth.y
   );
 
-  // 嘴巴张开高度：上下嘴唇距离
   let mouthOpen = abs(bottomLip.y - topLip.y);
-
-  // 脸高：防止离摄像头远近变化太大
   let faceHeight = abs(bottomFace.y - topFace.y);
-
-  // 嘴巴张开比例
   let mouthRatio = mouthOpen / faceHeight;
 
-  // 门槛调低：只要稍微张开一点就喷火
   let openThreshold = 0.025;
 
   if (mouthRatio > openThreshold) {
-    // 嘴巴中心
-    // 这里也直接用原本的 x
     let centerX = (leftMouth.x + rightMouth.x) / 2;
     let centerY = (topLip.y + bottomLip.y) / 2 + 8;
 
-    // 张得越大，喷得越多
     let amount = floor(
       map(
         constrain(mouthRatio, openThreshold, 0.18),
@@ -278,118 +243,89 @@ function emitFireWhenMouthOpens(points) {
       )
     );
 
-    // 嘴巴越宽，火焰散开的范围越大
     let spread = mouthWidth * 0.22;
 
     for (let i = 0; i < amount; i++) {
-      fire.push(
-        makeFireParticle(
-          centerX + random(-spread, spread),
-          centerY + random(-5, 5),
-          mouthWidth,
-          mouthRatio
-        )
+      let particle = makeFireParticle(
+        centerX + random(-spread, spread),
+        centerY + random(-5, 5),
+        mouthWidth,
+        mouthRatio
       );
+      fireParticles.push(particle);
     }
   }
 }
 
 
 // ------------------------------------
-// 11. 创建一个火焰粒子
+// make one fire particle
 // ------------------------------------
 function makeFireParticle(x, y, mouthWidth, mouthRatio) {
   return {
-    // 位置
     x: x,
     y: y,
-
-    // 粒子大小
     size: random(mouthWidth * 0.12, mouthWidth * 0.26) + random(4, 8),
-
-    // 左右轻微散开
     vx: random(-2.0, 2.0),
-
-    // 向上速度
     vy: random(-4.8, -2.0) - mouthRatio * 10,
-
-    // 透明度
     alpha: 255,
-
-    // 每一帧缩小一点
     shrink: random(0.08, 0.16),
-
-    // 一部分是主火焰，一部分是小火花
     isSpark: random() < 0.38
   };
 }
 
 
 // ------------------------------------
-// 12. 更新并绘制火焰
+// update and draw fire
 // ------------------------------------
 function updateAndDrawFire() {
-  // 每一帧先清空火焰图层
   fireLayer.clear();
   fireLayer.noStroke();
 
-  // 倒着循环，删除粒子更安全
-  for (let i = fire.length - 1; i >= 0; i--) {
-    let p = fire[i];
+  for (let i = fireParticles.length - 1; i >= 0; i--) {
+    let p = fireParticles[i];
 
-    // 更新位置
     p.x += p.vx;
     p.y += p.vy;
 
-    // 继续往上飘一点
     p.vy -= 0.02;
-
-    // 左右速度慢慢减弱
     p.vx *= 0.98;
 
-    // 透明度减少
     if (p.isSpark) {
       p.alpha -= 12;
     } else {
       p.alpha -= 8;
     }
 
-    // 粒子慢慢变小
     p.size -= p.shrink;
 
-    // 根据类型画不同效果
     if (p.isSpark) {
       drawSpark(p);
     } else {
       drawSingleFlame(p);
     }
 
-    // 太小或者太透明就删除
     if (p.alpha <= 0 || p.size <= 1) {
-      fire.splice(i, 1);
+      fireParticles.splice(i, 1);
     }
   }
 
-  // 限制数量，避免太卡
-  if (fire.length > 500) {
-    fire.splice(0, fire.length - 500);
+  if (fireParticles.length > 500) {
+    fireParticles.splice(0, fireParticles.length - 500);
   }
 }
 
 
 // ------------------------------------
-// 13. 画主火焰
-// 用三层椭圆做出火苗效果
+// draw one flame
 // ------------------------------------
 function drawSingleFlame(p) {
   let outerW = p.size * 0.9;
   let outerH = p.size * 2.3;
 
-  // 外层：深红橙
   fireLayer.fill(255, 60, 0, p.alpha * 0.40);
   fireLayer.ellipse(p.x, p.y, outerW, outerH);
 
-  // 中层：亮橙色
   fireLayer.fill(255, 145, 0, p.alpha * 0.68);
   fireLayer.ellipse(
     p.x,
@@ -398,7 +334,6 @@ function drawSingleFlame(p) {
     outerH * 0.72
   );
 
-  // 内层：亮黄色
   fireLayer.fill(255, 235, 140, p.alpha * 0.92);
   fireLayer.ellipse(
     p.x,
@@ -410,32 +345,27 @@ function drawSingleFlame(p) {
 
 
 // ------------------------------------
-// 14. 画小火花
-// 比主火焰更小、更亮
+// draw spark
 // ------------------------------------
 function drawSpark(p) {
-  // 内层亮点
   fireLayer.fill(255, 235, 160, p.alpha);
   fireLayer.ellipse(p.x, p.y, p.size * 0.42, p.size * 0.42);
 
-  // 外层淡橙色光
   fireLayer.fill(255, 150, 0, p.alpha * 0.45);
   fireLayer.ellipse(p.x, p.y, p.size * 0.95, p.size * 0.95);
 }
 
 
 // ------------------------------------
-// 15. 清空火焰
-// 点击按钮后调用
+// clear fire
 // ------------------------------------
 function clearFire() {
-  fire = [];
+  fireParticles = [];
 }
 
 
 // ------------------------------------
-// 16. 保存当前画面
-// 点击按钮后调用
+// save image
 // ------------------------------------
 function savePhoto() {
   saveCanvas("face_fire_filter", "png");
@@ -443,8 +373,7 @@ function savePhoto() {
 
 
 // ------------------------------------
-// 17. 浏览器窗口变化时更新尺寸
-// 防止下面留白
+// resize
 // ------------------------------------
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);

@@ -1,95 +1,66 @@
-
-
 let grotesk;
-let particles = [];
+let points = [];
 let word = "ARC";
+let fontSize = 220;
+let overload = 0;
 
 function preload() {
-  grotesk = loadFont("front.ttf"); 
+  grotesk = loadFont("front.ttf");
 }
 
 function setup() {
-  createCanvas(600, 600);
-  textFont(grotesk);
-  colorMode(HSB, 360, 100, 100, 100); 
+  let canvas = createCanvas(600, 600);
+  canvas.parent("sketch-container");
 
-  let pts = grotesk.textToPoints(word, 75, 380, 220, {
+  points = grotesk.textToPoints(word, 75, 380, fontSize, {
     sampleFactor: 0.12
   });
 
-  for (let p of pts) {
-    particles.push(new ArcParticle(p.x, p.y));
-  }
+  console.log(points);
 }
 
 function draw() {
-
-  background(240, 35, 10);
-
-  let cx = width / 2;
-  let cy = height / 2 + 40;
-
-  let breathe = sin(frameCount * 0.05);
-  let pressBoost = mouseIsPressed ? 1.6 : 1.0;
-
+  background(20);
   noStroke();
 
-  for (let pt of particles) {
-    pt.update(cx, cy, breathe, pressBoost);
-    pt.show();
-  }
-}
+  let cx = width / 2;
+  let breathe = sin(frameCount * 0.05);
 
-class ArcParticle {
-  constructor(x, y) {
-    this.ox = x;
-    this.oy = y;
-
-    this.x = x;
-    this.y = y;
-
-    this.phase = random(TWO_PI);
-
-   
-    this.baseSize = random(8, 14);
-
-  
-    this.hueOffset = random(360);
+  if (mouseIsPressed) {
+    overload += 0.5;
+  } else {
+    overload = max(0, overload - 0.3);
   }
 
-  update(cx, cy, breathe, pressBoost) {
-    let drift = sin(frameCount * 0.03 + this.phase) * 6;
+  for (let i = 0; i < points.length; i++) {
+    let dx = points[i].x - cx;
 
-    let dMouse = dist(mouseX, mouseY, this.ox, this.oy);
+    // 越靠左右两边，往上拱得越明显
+    let archAmount = map(abs(dx), 0, 260, 10, 45, true);
+
+    // 鼠标越近，反应越明显
+    let dMouse = dist(mouseX, mouseY, points[i].x, points[i].y);
     let hover = map(dMouse, 0, 180, 1, 0, true);
 
-    let dxFromCenter = this.ox - cx;
-    let archLift = abs(dxFromCenter) / 260;
-    archLift = constrain(archLift, 0, 1);
+    // 左右张开的效果
+    let pushX = map(abs(dx), 0, 260, 0, 20, true) * hover;
 
-    let liftStrength = (40 + 30 * breathe) * hover * pressBoost;
+    // 抖动，像你 POWER 那个写法
+    let jitterX = random(-overload, overload);
+    let jitterY = random(-overload, overload);
 
-    let targetY = this.oy - liftStrength * (0.3 + 0.7 * archLift);
+    let x;
+    if (dx > 0) {
+      x = points[i].x + pushX + jitterX;
+    } else {
+      x = points[i].x - pushX + jitterX;
+    }
 
-    let pushOut =
-      map(abs(dxFromCenter), 0, 260, 0, 22, true) * hover * pressBoost;
-    let targetX = this.ox + (dxFromCenter > 0 ? pushOut : -pushOut);
+    let y = points[i].y - archAmount * hover - breathe * 8 * hover + jitterY;
 
-    targetX += drift * 0.7;
-    targetY += drift * 0.25;
+    let size = 5 + hover * 4 + overload * 0.1;
 
-    this.x = lerp(this.x, targetX, 0.12);
-    this.y = lerp(this.y, targetY, 0.12);
-
-    // hover + 
-    this.size = this.baseSize + hover * 6 + breathe * 2;
-  }
-
-  show() {
-    // 🌈 
-    let hue = (this.hueOffset + frameCount * 1.5) % 360;
-
-    fill(hue, 85, 100, 90);
-    ellipse(this.x, this.y, this.size, this.size);
+    fill((frameCount * 2 + i) % 255, 200, 255);
+    ellipse(x, y, size);
   }
 }

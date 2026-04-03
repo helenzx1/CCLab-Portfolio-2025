@@ -25,21 +25,19 @@ function draw() {
   for (let i = 0; i < points.length; i++) {
     let p = points[i];
 
-    // 鼠标距离 → 控制刺的长度
+
     let d = dist(mouseX, mouseY, p.x, p.y);
     let spikeLen = map(d, 0, 140, 20, 6, true);
 
-    // 尖刺方向（朝外）
+
     let angle = atan2(p.y - mouseY, p.x - mouseX);
 
-    // 轻微抖动
     let jitterX = random(-1.2, 1.2);
     let jitterY = random(-1.2, 1.2);
 
     let x = p.x + jitterX;
     let y = p.y + jitterY;
 
-    // 三角形三个点（尖刺）
     let x1 = x;
     let y1 = y;
 
@@ -49,7 +47,7 @@ function draw() {
     let x3 = x + cos(angle - 0.3) * spikeLen;
     let y3 = y + sin(angle - 0.3) * spikeLen;
 
-    // 颜色（偏暗红）
+
     let r = 255;
     let g = map(sin(t + i * 0.05), -1, 1, 40, 90);
     let b = map(cos(t + i * 0.05), -1, 1, 30, 70);

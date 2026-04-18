@@ -10,6 +10,23 @@
 
   <!-- 样式 -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- ⭐ 这里直接帮你加字体变大（不用改css文件） -->
+  <style>
+    .main-panel p {
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .subpanel-title {
+      font-size: 22px;
+    }
+
+    .cute-btn {
+      font-size: 15px;
+      padding: 12px 18px;
+    }
+  </style>
 </head>
 
 <body class="bg-bows">
@@ -40,7 +57,6 @@
 
       <div class="panel-title">home</div>
 
-      <!-- 主视觉 -->
       <div class="subpanel">
 
         <div class="subpanel-title">welcome</div>
@@ -65,37 +81,9 @@
 
       </div>
 
-      <!-- 图片块（可选） -->
-      <div class="subpanel">
-
-        <div class="subpanel-title">highlight</div>
-
-        <img src="hero-image.jpg" class="thumb" alt="portfolio image" />
-
-      </div>
-
     </main>
 
-    <!-- SIDE -->
-    <aside class="panel side-panel">
-
-      <div class="panel-title">info</div>
-
-      <p class="muted">
-        Parsons School of Design<br>
-        Communication Design (Interaction)
-      </p>
-
-      <div class="mini-sticker">
-        <div class="mini-title">focus</div>
-        <div class="mini-box">
-          <div class="mini-row">interaction</div>
-          <div class="mini-row">creative coding</div>
-          <div class="mini-row">UI / UX</div>
-        </div>
-      </div>
-
-    </aside>
+    <!-- ❌ 完全删除 side-panel（info） -->
 
     <!-- FOOTER -->
     <footer class="footer">

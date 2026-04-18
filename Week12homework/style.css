@@ -1,20 +1,23 @@
 body {
     font-family: 'Inter', -apple-system, sans-serif;
-    background-color: #fdf6fa;
+    background: linear-gradient(to bottom, #fff0f6, #fdf6fa, #fff7fb);
     display: flex;
     justify-content: center;
     padding-top: 50px;
     color: #333;
     margin: 0;
+    min-height: 100vh;
 }
 
 .container {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.92);
     width: 100%;
     max-width: 450px;
     padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(255, 182, 210, 0.18);
+    border: 1px solid #ffe3ef;
+    backdrop-filter: blur(4px);
 }
 
 .header h1 {
@@ -22,11 +25,12 @@ body {
     font-size: 1.8rem;
     color: #2d3436;
     text-align: center;
+    letter-spacing: 0.2px;
 }
 
 .header p {
     text-align: center;
-    color: #636e72;
+    color: #7a7a85;
     margin-bottom: 20px;
 }
 
@@ -35,6 +39,7 @@ body {
     margin-top: 20px;
     margin-bottom: 10px;
     color: #2d3436;
+    font-weight: 600;
 }
 
 .middle p {
@@ -43,14 +48,20 @@ body {
     color: #2d3436;
 }
 
+label {
+    margin-left: 6px;
+}
+
 #q10_input {
     width: 100%;
     padding: 14px;
     font-size: 1.1rem;
     border: 2px solid #ffd6e7;
-    border-radius: 8px;
+    border-radius: 10px;
     outline: none;
     box-sizing: border-box;
+    background-color: #fffafd;
+    color: #333;
 }
 
 #q10_input:focus {
@@ -64,7 +75,7 @@ button,
     color: white;
     padding: 12px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
@@ -93,11 +104,20 @@ button:active,
 #resultText {
     margin-top: 20px;
     padding: 15px;
-    background: #fff0f6;
-    border-radius: 10px;
+    background: #fff7fb;
+    border-radius: 12px;
+    border: 1px solid #ffe3ef;
 }
 
 #resultText h3 {
     margin-top: 0;
     color: #ff6fa5;
+}
+
+.help-text {
+    font-size: 0.9rem;
+    color: #8f8f99;
+    margin-top: -8px;
+    margin-bottom: 14px;
+    text-align: left;
 }

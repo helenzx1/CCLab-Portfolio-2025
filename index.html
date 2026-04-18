@@ -2,59 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Helen Luo Portfolio</title>
 
-  <!-- Google Fonts -->
+  <!-- 字体 -->
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 
+  <!-- 样式 -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="bg-bows">
+
   <div class="frame">
 
-    <!-- Header -->
+    <!-- HEADER -->
     <header class="banner">
       <div class="banner-inner">
-        <div class="pixel-title">Projects</div>
+        <div class="pixel-title">HELEN ATELIER</div>
       </div>
     </header>
 
-    <div class="layout">
+    <!-- NAV -->
+    <aside class="panel nav-panel">
+      <div class="panel-title">navigation</div>
 
-      <!-- Navigation -->
-      <aside class="panel nav-panel">
-        <div class="panel-title">navigation</div>
-        <div class="nav-list">
-          <a class="nav-btn" href="index.html">home</a>
-          <a class="nav-btn active" href="projects.html">projects</a>
-          <a class="nav-btn" href="about.html">about</a>
-          <a class="nav-btn" href="extra.html">extra</a>
+      <div class="nav-list">
+        <a class="nav-btn active" href="index.html">home</a>
+        <a class="nav-btn" href="projects.html">projects</a>
+        <a class="nav-btn" href="about.html">about</a>
+        <a class="nav-btn" href="extra.html">extra</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="panel main-panel">
+
+      <div class="panel-title">home</div>
+
+      <!-- 主视觉 -->
+      <div class="subpanel">
+
+        <div class="subpanel-title">welcome</div>
+
+        <p>
+          An interactive design portfolio exploring dreamlike interfaces,
+          playful typography, and emotional digital experiences.
+        </p>
+
+        <br>
+
+        <p>
+          I work at the intersection of interaction design, visual storytelling,
+          and creative coding.
+        </p>
+
+        <br>
+
+        <a class="cute-btn" href="projects.html">
+          View Projects →
+        </a>
+
+      </div>
+
+      <!-- 图片块（可选） -->
+      <div class="subpanel">
+
+        <div class="subpanel-title">highlight</div>
+
+        <img src="hero-image.jpg" class="thumb" alt="portfolio image" />
+
+      </div>
+
+    </main>
+
+    <!-- SIDE -->
+    <aside class="panel side-panel">
+
+      <div class="panel-title">info</div>
+
+      <p class="muted">
+        Parsons School of Design<br>
+        Communication Design (Interaction)
+      </p>
+
+      <div class="mini-sticker">
+        <div class="mini-title">focus</div>
+        <div class="mini-box">
+          <div class="mini-row">interaction</div>
+          <div class="mini-row">creative coding</div>
+          <div class="mini-row">UI / UX</div>
         </div>
-      </aside>
+      </div>
 
-      <!-- Main -->
-      <main class="panel main-panel">
-        <div class="panel-title">projects list</div>
+    </aside>
 
-        <div class="subpanel">
-          <div class="subpanel-title">interactive typography</div>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-inner">
+        © Helen Luo
+      </div>
+    </footer>
 
-          <!-- ✅ 直接放 p5 画布 -->
-          <div id="sketch-holder"></div>
-
-        </div>
-      </main>
-
-    </div>
   </div>
-
-  <!-- p5 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
-
-  <!-- 你的 sketch -->
-  <script src="interactive-typography.js"></script>
 
 </body>
 </html>

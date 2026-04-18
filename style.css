@@ -1,3 +1,12 @@
+:root {
+  --pink: #ff6f9f;
+  --pink-light: #ffd6e4;
+  --pink-bg: #fff3f8;
+  --white: rgba(255, 255, 255, 0.6);
+  --text: #ff6f9f;
+  --green: #c9d681;
+}
+
 /* =========================
    RESET
 ========================= */
@@ -5,16 +14,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  cursor: url("cursor.png") 12 12, auto;
 }
 
 body {
   font-family: "Quicksand", sans-serif;
-  background: linear-gradient(135deg, #fbe7ef, #f7dbe7, #f3e6ff);
-  color: #ff6fa5;
+  background: radial-gradient(circle at top left, #ffdce8, #fff3f8 50%, #fff8fb 100%);
+  color: var(--text);
 }
 
 /* =========================
-   FRAME LAYOUT
+   FRAME
 ========================= */
 .frame {
   display: grid;
@@ -33,22 +43,23 @@ body {
 }
 
 .banner-inner {
-  background: linear-gradient(90deg, #fff, #f6e6ef);
+  background: var(--white);
   border-radius: 30px;
   padding: 20px 30px;
+  backdrop-filter: blur(10px);
 }
 
 .pixel-title {
   font-family: "DotGothic16", monospace;
   font-size: 60px;
-  color: #ff7ca8;
+  color: var(--pink);
 }
 
 /* =========================
    PANELS
 ========================= */
 .panel {
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--white);
   border-radius: 28px;
   padding: 18px;
   backdrop-filter: blur(10px);
@@ -97,15 +108,20 @@ body {
 
 .nav-btn {
   display: block;
-  padding: 10px;
+  padding: 10px 14px;
   border-radius: 20px;
   text-decoration: none;
-  color: #ff6fa5;
-  background: rgba(255,255,255,0.6);
+  color: var(--pink);
+  background: rgba(255, 255, 255, 0.7);
+  transition: 0.2s;
+}
+
+.nav-btn:hover {
+  background: var(--pink-light);
 }
 
 .nav-btn.active {
-  background: #ffd6e6;
+  background: var(--pink-light);
 }
 
 /* =========================
@@ -118,57 +134,63 @@ body {
 }
 
 /* =========================
-   PROJECT CARD (DEFAULT)
+   PROJECT CARD
 ========================= */
 .proj-card {
   display: block;
   text-decoration: none;
   color: inherit;
+  background: rgba(255, 255, 255, 0.45);
+  padding: 10px;
+  border-radius: 20px;
+  transition: 0.2s;
+}
+
+.proj-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .thumb {
   width: 100%;
   height: 120px;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 16px;
   margin-bottom: 8px;
 }
 
-/* placeholder (你之前那个模糊块) */
 .placeholder-thumb {
   width: 100%;
   height: 120px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #fcd6e5, #f5e6a8);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fcd6e5, #fff0c7);
   margin-bottom: 8px;
 }
 
-/* name */
 .proj-name {
   font-size: 14px;
   line-height: 1.4;
 }
 
 /* =========================
-   ✅ 2026 TEXT ONLY
+   TEXT ONLY CARD
 ========================= */
 .projects-grid-textonly {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
 .proj-card-textonly {
-  min-height: 120px;
+  min-height: 110px;
   display: flex;
   align-items: center;
   padding: 18px;
-  border-radius: 24px;
-  background: rgba(255,255,255,0.5);
-  transition: 0.2s;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.45);
 }
 
 .proj-card-textonly:hover {
   transform: translateY(-4px);
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .proj-card-textonly .proj-name {
@@ -177,25 +199,16 @@ body {
 }
 
 /* =========================
-   SIDE TEXT
+   TEXT
 ========================= */
 .muted {
   font-size: 13px;
   opacity: 0.7;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-/* =========================
-   FOOTER
-========================= */
-.footer {
-  grid-column: 1 / -1;
-}
-
-.footer-inner {
-  text-align: center;
-  opacity: 0.6;
-  font-size: 12px;
+p, li, a {
+  color: var(--text);
 }
 
 /* =========================
@@ -205,14 +218,14 @@ body {
   display: inline-block;
   padding: 10px 16px;
   border-radius: 20px;
-  background: #ffd6e6;
+  background: var(--pink-light);
   text-decoration: none;
-  color: #ff5f95;
+  color: var(--pink);
   font-size: 14px;
 }
 
 /* =========================
-   MINI STICKER (project page)
+   MINI STICKER
 ========================= */
 .mini-sticker {
   margin-top: 20px;
@@ -226,13 +239,26 @@ body {
 
 .mini-box {
   padding: 12px;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.45);
   border-radius: 16px;
 }
 
 .mini-row {
   font-size: 13px;
   margin-bottom: 4px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  grid-column: 1 / -1;
+}
+
+.footer-inner {
+  text-align: center;
+  opacity: 0.6;
+  font-size: 12px;
 }
 
 /* =========================
@@ -254,10 +280,7 @@ body {
     font-size: 36px;
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
+  .projects-grid,
   .projects-grid-textonly {
     grid-template-columns: 1fr;
   }

@@ -1,21 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Work</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Quicksand:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
-    body{
-      margin:0;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-      background:#ffe0ef;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: url("../cursor.png") 12 12, auto;
     }
-    canvas{ display:block; }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top left, #ffdce8, #fff3f8 50%, #fff8fb 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Quicksand", sans-serif;
+      color: #ff6f9f;
+    }
+
+    main {
+      background: rgba(255, 255, 255, 0.45);
+      border-radius: 28px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    canvas {
+      display: block;
+      border-radius: 20px;
+    }
   </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
 </head>
 <body>
-  <script src="sketch.js"></script>
+  <main id="sketch-wrapper">
+    <script src="sketch.js"></script>
+  </main>
 </body>
 </html>

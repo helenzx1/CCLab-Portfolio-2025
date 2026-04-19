@@ -12,6 +12,10 @@ let instructionText;
 let clearButton;
 let saveButton;
 
+// 固定画布尺寸，防止变形
+let camW = 640;
+let camH = 480;
+
 
 // ------------------------------------
 // preload()
@@ -36,14 +40,15 @@ function gotFaces(results) {
 // setup()
 // ------------------------------------
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  let canvas = createCanvas(camW, camH);
+  canvas.parent("sketch-container");
 
   // extra graphics layer for fire
-  fireLayer = createGraphics(windowWidth, windowHeight);
+  fireLayer = createGraphics(camW, camH);
 
   // camera
   video = createCapture(VIDEO);
-  video.size(windowWidth, windowHeight);
+  video.size(camW, camH);
   video.hide();
 
   // start facemesh
@@ -51,23 +56,27 @@ function setup() {
 
   // DOM text
   instructionText = createP("Open your mouth to breathe fire");
-  instructionText.position(20, 10);
-  instructionText.style("margin", "0");
+  instructionText.parent("sketch-container");
+  instructionText.style("margin", "0 0 12px 0");
   instructionText.style("padding", "8px 12px");
-  instructionText.style("font-family", "Arial");
+  instructionText.style("font-family", "Quicksand, sans-serif");
   instructionText.style("font-size", "18px");
   instructionText.style("color", "#7a0026");
   instructionText.style("background", "rgba(255,255,255,0.75)");
   instructionText.style("border-radius", "10px");
+  instructionText.style("display", "inline-block");
 
   // clear button
   clearButton = createButton("Clear Fire");
-  clearButton.position(20, 55);
+  clearButton.parent("sketch-container");
+  clearButton.style("margin-right", "10px");
+  clearButton.style("margin-top", "10px");
   clearButton.mousePressed(clearFire);
 
   // save button
   saveButton = createButton("Save Photo");
-  saveButton.position(110, 55);
+  saveButton.parent("sketch-container");
+  saveButton.style("margin-top", "10px");
   saveButton.mousePressed(savePhoto);
 }
 
@@ -376,10 +385,5 @@ function savePhoto() {
 // resize
 // ------------------------------------
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  fireLayer = createGraphics(windowWidth, windowHeight);
-
-  if (video) {
-    video.size(windowWidth, windowHeight);
-  }
+  // 不再跟着整个窗口改尺寸，避免变形
 }
